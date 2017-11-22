@@ -1,0 +1,29 @@
+.menu-kiri{
+  width:250px;
+  height: 666px;
+  background-color:skyblue;
+  box-shadow:0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.menu-kiri a{
+  text-decoration: none;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  padding-right: 100px;
+}
+
+.menu-kiri ul li{
+  list-style-type: none;
+  display: block;
+  padding: 15px;
+  border-bottom: 1px solid #ccc
+}
+
+.menu-kiri ul li:hover{
+  background-color: gray;
+  transition: linear all 0.40s;
+  margin-left: 10px;
+}
+
+.menu-kiri ul li a:hover{
+  color: black;
+}

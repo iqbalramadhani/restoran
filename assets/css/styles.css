@@ -4,6 +4,7 @@ body{
   line-height:1.42857143;
   color:#333;
   background-color:white;
+  overflow-x: hidden;
 }
 
 .selamat{
@@ -28,7 +29,7 @@ body{
   color: white;
 }
 .kanan{
-  float: right;
+  text-align: right;
 }
 .kiri{
   text-align: left;
@@ -100,18 +101,120 @@ body{
   float: center;
 }
 
-/*.active{
-  background-color: #f1f2ed;
-}*/
+.shadow{
+  box-shadow:0px 0px 2px rgba(0, 0, 0, 0.3);
+}
 
-.blok{
-  background-color: #fcbf2f;
+.selected{
+  background-color: white;  
+}
+
+.selected a{
+  color: black;  
 }
 
 #navbar>li>a{
-  color: #474c82;
+  color: white;
 }
 
 #navbar>li>a:hover{
-  color: #2d2d2b;
+  background-color: #1e7bca;
+  transition: linear all 0.30s;
+}
+
+#navbar>li>a:visited{
+  background-color: #212322;
+}
+
+#Mynav{
+  background-color: orange;
+}
+
+#nav-right>li>a:hover{
+  background-color: #212322;
+}
+
+#nav-right>li>a:visited{
+  background-color: #212322;
+}
+
+
+.navb{
+  background-color: #ff8d00;
+  color: white;
+  list-style: none;
+  text-align: left;
+  padding: 0 0 0 0;
+}
+
+.navb a{
+  text-decoration: none;
+  color: white;
+  padding: 20px 20px 20px 20px;
+}
+
+.navb ul li{
+  list-style-type: none;
+  display: inline-block;
+  padding: 13px;
+}
+
+.navb ul li:hover{
+  background-color: #212322;
+}
+
+.navb ul li a:hover{
+  color: white;
+}
+
+.navb-select{
+  background-color : #212322;
+}
+
+
+@media (min-width: 700px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .sidebar-nav .navbar li a:hover {
+    background-color: #4286f4;
+    color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    transition: linear all 0.30s;
+    margin-left: 10px;
+  }
+}
+
+.title{
+  background-color: #4e535b;
+  color: white;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+
+.nav-menu{
+  padding-left: 330px;
+}
+
+.M-content{
+  width: 1033px;
+  height: 700px;
+}
+
+#mycontainer{
+  max-width: 1035px;
 }
