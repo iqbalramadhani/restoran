@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
@@ -17,8 +17,8 @@
         <div class="container">
         <div class="row">
             <div class="col-sm col-md">
-                <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>assets/img/logo.png"></a>
-                <div class="nama"><h4><b>Selamat Datang, xxxxxxxxxxxxxxx</b> </h4></div>            
+                <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>assets/gambar/logo.png"></a>
+                <div class="nama"><h4><b>Selamat Datang, <?php echo $this->session->userdata('nama');?></b> </h4></div>            
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right" id="nav-right">
         <li>
-            <a aria-expanded="false" href="#"> <span></span><img src="<?php echo base_url();?>assets/img/out.png"><span class="badge">42</span></a>
+            <a aria-expanded="false" href="#"> <span></span><img src="<?php echo base_url();?>/assets/gambar/out.png"><span class="badge"> 42</span></a>
                         
         </li>
       </ul>
@@ -49,25 +49,25 @@
     <div class="row">
         <div class="col-sm-5 col-md-3">
             <div class="thumbnail">
-                <img src="<?php echo base_url();?>/assets/img/M1.png" alt="...">
+                <img src="<?php echo base_url();?>/assets/gambar/M1.png" alt="...">
                 <div class="caption">
-                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="Y.png"></a></h3></p>
+                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 col-md-2">
             <div class="thumbnail">
-                <img src="<?php echo base_url();?>/assets/img/N1.png" alt="...">
+                <img src="<?php echo base_url();?>/assets/gambar/N1.png" alt="...">
                 <div class="caption">
-                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="Y.png"></a></h3></p>
+                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 col-md-2">
             <div class="thumbnail">
-                <img src="<?php echo base_url();?>/assets/img/N1.png" alt="...">
+                <img src="<?php echo base_url();?>/assets/gambar/N1.png" alt="...">
                 <div class="caption">
-                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="Y.png"></a></h3></p>
+                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
                 </div>
             </div>
         </div>
@@ -102,8 +102,8 @@
             </div>
         </div>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

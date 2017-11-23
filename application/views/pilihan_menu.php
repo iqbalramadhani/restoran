@@ -4,17 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untitled</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <title>Pilihan Menu</title>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Pretty-Header.css">
-    <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Header.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Footer.css">
 </head>
 
 <body>
     <div class="container shadow">
-    <h1><center><div class="menu">Pilih Jenis Akses Anda</div></center></h1>
+    <h1><center><div class="menu">Pilih Jenis Akses Anda !!!!</div></center></h1>
     <hr class="baris">
     <center>
     <div class="row">
@@ -32,9 +32,10 @@
     
     <div class="row">
         <div class="col-sm-6 col-md-4">
-            <button type="button" class="btn btn-default btn-circle btn-xl">Kasir<i class=""></i></button>            
+            <button type="button" class="btn btn-default btn-circle btn-xl"><?php echo anchor('pelanggan','Pelanggan');?></button>            
         </div>
         <div class="col-sm-6 col-md-4">
+            
             <button type="button" class="btn btn-default btn-circle btn-xl">Pelanggan<i class=""></i></button>
         </div>
         <div class="col-sm-6 col-md-4">
@@ -72,10 +73,9 @@
                <!-- <div class="social-links social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>-->
             </div>
         </div>
-    </footer>
     </footer>     
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
