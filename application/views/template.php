@@ -1,14 +1,4 @@
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Pretty-Header.css">
-    <link rel="stylesheet" href="assets/css/Pretty-Footer.css">
-
-<!nav>
-<?php echo $content;?>
+<?php echo $contents;?>
 <footer>
         <div class="row container">
             <div class="col-md-4 col-sm-6 footer-navigation">

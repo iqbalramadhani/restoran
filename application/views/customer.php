@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-
+<?php
+    echo form_open('pelanggan');
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +20,11 @@
         <div class="row">
             <div class="col-sm col-md">
                 <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>assets/gambar/logo.png"></a>
-                <div class="nama"><h4><b>Selamat Datang, <?php echo $this->session->userdata('nama');?></b> </h4></div>            
+                <div class="nama">
+                    <h4>
+                        <b>Selamat Datang, <?php echo $this->session->userdata('id_pelanggan');?></b> 
+                    </h4>
+                </div>            
             </div>
         </div>
     </div>
@@ -28,16 +34,19 @@
     <div class="collapse navbar-collapse" id="Mynav">
     <b>
       <ul class="nav navbar-nav" id="navbar">
-        <li class="active"><a href="#">REKOMENDASI </a></li>
-        <li><a href="#">Makanan </a></li>
-        <li><a href="#">Minuman</a></li>
-        <li><a href="#">Hidangan Lain </a></li>
-        <li><a href="#">Checkout </a></li>
+        <li><?php echo anchor('pelanggan/home','HOME');?></li>
+        <li class="active"><a href="#">REKOMENDASI</a></li>
+        <li><?php echo anchor('pelanggan/menu_makanan','Makanan');?></li>
+        <li><?php echo anchor('pelanggan/menu_minuman','Minuman');?></li>
+        <li><?php echo anchor('pelanggan/menu_lain','Hidangan Lain');?></li>
+        <li><?php echo anchor('pelanggan/checout','Checout');?></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="nav-right">
         <li>
-            <a aria-expanded="false" href="#"> <span></span><img src="<?php echo base_url();?>/assets/gambar/out.png"><span class="badge"> 42</span></a>
-                        
+            <a aria-expanded="false" href="#">
+                <img src="<?php echo base_url();?>/assets/gambar/out.png">
+                <span class="badge">42</span>
+            </a>
         </li>
       </ul>
     </b>
@@ -46,64 +55,34 @@
     <!isi>
     <div class="container spasi-T2 shadow">
         <!isi gambar>
-    <div class="row">
-        <div class="col-sm-5 col-md-3">
-            <div class="thumbnail">
-                <img src="<?php echo base_url();?>/assets/gambar/M1.png" alt="...">
-                <div class="caption">
-                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
+        <div class="row">
+            <div class="col-sm-5 col-md-3">
+                <div class="thumbnail">
+                    <img src="<?php echo base_url();?>/assets/gambar/M1.png" alt="...">
+                    <div class="caption">
+                        <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-4 col-md-2">
-            <div class="thumbnail">
-                <img src="<?php echo base_url();?>/assets/gambar/N1.png" alt="...">
-                <div class="caption">
-                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
+            <?php
+            foreach ($record->result() as $r){
+            ?>
+            <div class="col-sm-4 col-md-2">
+                <div class="thumbnail">
+                    <img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?>" alt="gambar_menu <?php echo $r->id_menu;?>">
+                    <h3><?php echo $r->nama;?></h3>
+                    <div class="caption">
+                        <h4><span class="label label-default"><?php echo $r->harga;?></span>                             
+                           <button type="submit" name="submit" class="btn btn-default"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></button> 
+                        </h4>                            
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2">
-            <div class="thumbnail">
-                <img src="<?php echo base_url();?>/assets/gambar/N1.png" alt="...">
-                <div class="caption">
-                    <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
-                </div>
-            </div>
+            </div>    
+            <?php
+            }
+            ?>
         </div>
     </div>
-    </div>
-
-    <!footer>
-    <footer>
-        <div class="row container">
-            <div class="col-md-4 col-sm-6 footer-navigation">
-                <h3><a href="#">Company<span>logo </span></a></h3>
-               <!-- <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">Faq</a><strong> · </strong><a href="#">Contact</a></p>-->
-                <p class="company-name">Company Name © 2015 </p>
-            </div>
-            <div class="col-md-4 col-sm-6 footer-contacts">
-                <!--<div><span class="fa fa-map-marker footer-contacts-icon"> </span>
-                    <p><span class="new-line-span">21 Revolution Street</span> Paris, France</p>
-                </div>
-                <div><i class="fa fa-phone footer-contacts-icon"></i>
-                    <p class="footer-center-info email text-left"> +1 555 123456</p>
-                </div>
-                <div><i class="fa fa-envelope footer-contacts-icon"></i>
-                    <p> <a href="#" target="_blank">support@company.com</a></p>
-                </div>-->
-            </div>
-            <div class="clearfix visible-sm-block"></div>
-            <div class="col-md-4 footer-about">
-                <h4>About the company</h4>
-                <p> Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-                </p>
-               <!-- <div class="social-links social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>-->
-            </div>
-        </div>
-    </footer>
-    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

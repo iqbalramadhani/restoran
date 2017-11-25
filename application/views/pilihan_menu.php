@@ -32,11 +32,13 @@
     
     <div class="row">
         <div class="col-sm-6 col-md-4">
-            <button type="button" class="btn btn-default btn-circle btn-xl"><?php echo anchor('pelanggan','Pelanggan');?></button>            
+            <button class="btn btn-default btn-circle btn-xl">
+                <?php echo anchor('pelanggan','Pelanggan');?>
+            </button>            
         </div>
         <div class="col-sm-6 col-md-4">
             
-            <button type="button" class="btn btn-default btn-circle btn-xl">Pelanggan<i class=""></i></button>
+            <button type="button" class="btn btn-default btn-circle btn-xl">Kasir<i class=""></i></button>
         </div>
         <div class="col-sm-6 col-md-4">
             <button type="button" class="btn btn-default btn-circle btn-xl">Pantry<i class=""></i></button>
