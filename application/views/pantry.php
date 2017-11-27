@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-sm col-md">
                 <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>/assets/img/logo.png"></a>
-                <div class="nama"><h4><b>Selamat Datang, xxxxxxxxxxxxxxx</b> </h4></div>            
+                <div class="nama"><h4><b>Selamat Datang, <?php echo $this->session->userdata('nama_pengguna');?></b> </h4></div>            
             </div>
         </div>
         </div>
@@ -121,32 +121,3 @@
     </div>
 
     <!main>
-
-
-    <!footer>
-    <footer>
-        <div class="row container">
-            <div class="col-md-4 col-sm-6 footer-navigation">
-                <h3><a href="#">Company<span>logo </span></a></h3>
-               <!-- <p class="links"><a href="#">Home</a><strong> · </strong><a href="#">Blog</a><strong> · </strong><a href="#">Pricing</a><strong> · </strong><a href="#">About</a><strong> · </strong><a href="#">Faq</a><strong> · </strong><a href="#">Contact</a></p>-->
-                <p class="company-name">Company Name © 2015 </p>
-            </div>
-            <div class="col-md-4 col-sm-6 footer-contacts">
-                <!--<div><span class="fa fa-map-marker footer-contacts-icon"> </span>
-                    <p><span class="new-line-span">21 Revolution Street</span> Paris, France</p>
-                </div>
-                <div><i class="fa fa-phone footer-contacts-icon"></i>
-                    <p class="footer-center-info email text-left"> +1 555 123456</p>
-                </div>
-                <div><i class="fa fa-envelope footer-contacts-icon"></i>
-                    <p> <a href="#" target="_blank">support@company.com</a></p>
-                </div>-->
-            </div>
-            
-        </div>
-    </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-
-</html>

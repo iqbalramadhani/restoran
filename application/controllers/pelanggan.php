@@ -16,7 +16,9 @@ class Pelanggan extends CI_Controller {
 
     public function identitas(){
         if(isset($_POST['submit'])){
-            $this->model_pelanggan->post();
+            $nama = $this->input->post('nama_anda',true);
+            $this->model_pelanggan->post($nama);
+            $this->model_pelanggan->data_user($nama);
             redirect('pelanggan/menu');
         }else{
             $this->template->load('template','inp_pelanggan');
@@ -30,8 +32,9 @@ class Pelanggan extends CI_Controller {
         $this->template->load('template','customer',$data);
         //$this->load->view('customer',$data);
     }
-    
-    function home(){
-        $this->load->view('pilihan_menu');
+     
+    public function selesai(){
+        $this->session->sess_destroy();
+        redirect('awal');
     }
 }

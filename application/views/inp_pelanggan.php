@@ -35,7 +35,7 @@
                         <h4>Hello,</h4>
                     </div>
                     <div class="col-sm-10 col-md-5">
-                        <input type="text" name="nama_anda" class="form-control round" placeholder="Nama Anda">
+                        <input type="text" name="nama_anda" class="form-control round" placeholder="Nama Anda" required="">
                     </div>
                 </div>
          </div>

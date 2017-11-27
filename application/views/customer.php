@@ -22,7 +22,7 @@
                 <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>assets/gambar/logo.png"></a>
                 <div class="nama">
                     <h4>
-                        <b>Selamat Datang, <?php echo $this->session->userdata('id_pelanggan');?></b> 
+                        <b>Selamat Datang, <?php echo $this->session->userdata('nama_pelanggan');?></b> 
                     </h4>
                 </div>            
             </div>
@@ -40,6 +40,7 @@
         <li><?php echo anchor('pelanggan/menu_minuman','Minuman');?></li>
         <li><?php echo anchor('pelanggan/menu_lain','Hidangan Lain');?></li>
         <li><?php echo anchor('pelanggan/checout','Checout');?></li>
+        <li><?php echo anchor('pelanggan/selesai','Selesai');?></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="nav-right">
         <li>
