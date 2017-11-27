@@ -22,7 +22,10 @@ class Login extends CI_Controller {
                 $id = $h->id_pegawai;
             }
             $data = $this->model_login->get_one($id)->row_array();
-            $this->session->set_userdata(array('nama_pengguna'=>$data['nama_lengkap']));
+            $this->session->set_userdata(array(
+                'nama_pengguna'=> $data['nama_lengkap'],
+                'status_login' => 'oke'
+                    ));
             if($data['jabatan'] == 'Manager'){
                 redirect('manager/tampil_manager');
             }else if($data['jabatan'] == 'Pantry'){
