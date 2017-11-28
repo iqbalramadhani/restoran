@@ -7,7 +7,7 @@ class Manager extends CI_Controller {
     }
     
     public function tampil_manager(){
-        $this->template->load('template','pantry');
+        $this->template->load('template','manager');
         //$this->load->view('pantry');
     }
             

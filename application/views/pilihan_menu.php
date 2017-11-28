@@ -30,7 +30,8 @@
             <!--<button type="button" class="btn btn-default btn-circle btn-xl">Pelayan<i class=""></i></button>-->
         </div>
         <div class="col-sm-6 col-md-4">
-            <a href="<?php echo base_url();?>"><input type="button" class="btn btn-default btn-circle btn-xl" value="Koki"></a>
+            <a href="<?php echo base_url().'koki';?>">
+                <input type="button" class="btn btn-default btn-circle btn-xl" value="Koki"></a>
             <!--<button type="button" class="btn btn-default btn-circle btn-xl">Koki</button>-->
         </div>
     </div>
@@ -43,7 +44,7 @@
             </a>            
         </div>
         <div class="col-sm-6 col-md-4">
-            
+            <a href="<?php echo base_url().'kasir';?>">
             <button type="button" class="btn btn-default btn-circle btn-xl">Kasir<i class=""></i></button>
         </div>
         <div class="col-sm-6 col-md-4">

@@ -8,6 +8,10 @@ class Pelayan extends CI_Controller {
         //$this->load->model('model_pelanggan');
         //cek_session();
     }
+    public function tampil_pelayan(){
+        $this->template->load('template','pelayan');
+        //$this->load->view('pantry');
+    }
     
     public function index(){
         //$this->template->load('template','login');

@@ -16,7 +16,9 @@
     <div class="login-card">
         <img src="<?php echo base_url();?>assets/gambar/avatar_2x.png" class="profile-img-card">
         <p class="profile-name-card"> </p>
-        <?php echo form_open('login/cek_login');?>
+        
+        <div class="form-signin">
+            <?php echo form_open('login/cek_login');?>
             <span class="reauth-email"> </span>
             <input class="form-control" type="text" name="username" required="" placeholder="Nama Pengguna" autofocus="" id="inputEmail">
             <input class="form-control" type="password" name="password" required="" placeholder="Kata Sandi" id="inputPassword">
@@ -27,6 +29,7 @@
                 </div>
             </div>
             <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" onclick="">Sign in</button>
+        </div>
         <?php echo form_close();?>
     </div>
 </body>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry</title>
+    <title>Pelayan</title>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
@@ -41,9 +41,9 @@
                 </div>
                 <div class="navbar-collapse collapse sidebar-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="title"><b>Pilihan Menu</b></li>
-                        <li><a href="#">Input Stok</a></li>
-                        <li><a href="#">Tampil Stok</a></li>
+                        <li class="title"><b>Menu Item 1</b></li>
+                        <li><a href="#">Menu Item</a></li>
+                        <li><a href="#">Menu Item</a></li>
                         <li><a href="#">Menu Item 3</a></li>
                         <li><a href="#">Menu Item 4</a></li>
 
@@ -56,7 +56,7 @@
     <!main>
         <div class="nav-menu">
             <div class="container" id="mycontainer">
-                <p><h4><center>Makanan(pantry)</center></h4></p>
+                <p><h4><center>Makanan(pelayan)</center></h4></p>
                 <hr>
                 <!isi content>
                 <form class="bootstrap-form-with-validation">

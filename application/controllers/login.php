@@ -28,7 +28,17 @@ class Login extends CI_Controller {
                     ));
             if($data['jabatan'] == 'Manager'){
                 redirect('manager/tampil_manager');
-            }else if($data['jabatan'] == 'Pantry'){
+            }
+            else if($data['jabatan'] == 'Pelayan'){
+                redirect('pelayan/tampil_pelayan');
+            }
+            else if($data['jabatan'] == 'Koki'){
+                redirect('koki/tampil_koki');
+            }
+            else if($data['jabatan'] == 'Kasir'){
+                redirect('kasir/tampil_kasir');
+            }
+            else if($data['jabatan'] == 'Pantry'){
                 redirect('pantry/tampil_pantry');
             }
         }else{
