@@ -19,18 +19,19 @@
         
         <div class="form-signin">
             <?php echo form_open('login/cek_login');?>
-            <span class="reauth-email"> </span>
-            <input class="form-control" type="text" name="username" required="" placeholder="Nama Pengguna" autofocus="" id="inputEmail">
-            <input class="form-control" type="password" name="password" required="" placeholder="Kata Sandi" id="inputPassword">
-            <div class="checkbox">
+                <span class="reauth-email"> </span>
+                <input class="form-control" type="text" name="username" required="" placeholder="Nama Pengguna" autofocus="" id="inputEmail">
+                <input class="form-control" type="password" name="password" required="" placeholder="Kata Sandi" id="inputPassword">
                 <div class="checkbox">
-                    <label>
-                        <input type="checkbox">Remember me</label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">Remember me</label>
+                    </div>
                 </div>
-            </div>
-            <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" onclick="">Sign in</button>
+                <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" onclick="">Sign in</button>
+            <?php echo form_close();?>
         </div>
-        <?php echo form_close();?>
+        
     </div>
 </body>
 </html>

@@ -10,7 +10,7 @@ class Login extends CI_Controller {
     }
     
     public function index(){
-        //$this->load->view('footer');
+        $this->load->view('login');
     }
 
     public function cek_login(){
@@ -21,32 +21,29 @@ class Login extends CI_Controller {
             foreach ($hasil->result() as $h){
                 $id = $h->id_pegawai;
             }
-            $data = $this->model_login->get_one($id)->row_array();
+            //$data = $this->model_login->get_one($id)->row_array();
             $this->session->set_userdata(array(
-                'nama_pengguna'=> $data['nama_lengkap'],
-                'status_login' => 'oke'
+                'id_pengguna'=> $id
+                //'status_login' => 'oke'
                     ));
-            if($data['jabatan'] == 'Manager'){
-                redirect('manager/tampil_manager');
+            $level = $this->session->userdata('level');
+            if($level == 'Manager'){
+                redirect('manager/cek_manager');
             }
-            else if($data['jabatan'] == 'Pelayan'){
-                redirect('pelayan/tampil_pelayan');
+            else if($level == 'Pelayan'){
+                redirect('pelayan/cek_pelayan');
             }
-            else if($data['jabatan'] == 'Koki'){
-                redirect('koki/tampil_koki');
+            else if($level == 'Koki'){
+                redirect('koki/cek_koki');
             }
-            else if($data['jabatan'] == 'Kasir'){
-                redirect('kasir/tampil_kasir');
+            else if($level == 'Kasir'){
+                redirect('kasir/cek_kasir');
             }
-            else if($data['jabatan'] == 'Pantry'){
-                redirect('pantry/tampil_pantry');
+            else if($level == 'Pantry'){
+                redirect('pantry/cek_pantry');
             }
         }else{
-            redirect('manager');
+            redirect('login');
         }
-    }
-    
-    public function tampil(){
-        $this->load->view('pantry');
     }
 }
