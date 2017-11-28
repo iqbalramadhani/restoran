@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_login extends CI_Model {
+    
     public function login($username,$password) {
         $cek = $this->db->get_where('akun',array(
                         'username'=>$username,

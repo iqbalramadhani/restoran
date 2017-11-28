@@ -10,19 +10,28 @@ class Pelanggan extends CI_Controller {
     }
     
     public function index(){
-            $this->template->load('template','inp_pelanggan');
-            //$this->load->view('customer');
+        $this->session->sess_destroy();
+        $this->template->load('template','inp_pelanggan');
+        //$this->load->view('customer');
     }
 
     public function identitas(){
         if(isset($_POST['submit'])){
-            $nama = $this->input->post('nama_anda',true);
-            $this->model_pelanggan->post($nama);
-            $this->model_pelanggan->data_user($nama);
-            redirect('pelanggan/menu');
+            $nama  = $this->input->post('nama_anda',true);
+            $data  = $this->model_pelanggan->data_user($nama);
+            //$this->model_pelanggan->post($nama,$data);
+            if($data->num_rows()>0){
+                redirect('pelanggan');
+            }else{
+                $this->session->set_userdata(array(
+                    'nama_pelanggan' => $nama,
+                    'status_input'   => 'oke'
+                ));
+                $this->model_pelanggan->post($nama);
+                redirect('pelanggan/menu');
+            }     
         }else{
-            $this->template->load('template','inp_pelanggan');
-            //$this->load->view('inp_pelanggan');
+            redirect('pelanggan');
         }
     }
     
