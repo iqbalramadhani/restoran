@@ -68,13 +68,24 @@
             <?php
             foreach ($record->result() as $r){
             ?>
-            <div class="col-sm-4 col-md-2">
+            <div class="col-sm-3 col-md-3">
                 <div class="thumbnail">
-                    <img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?>" alt="gambar_menu <?php echo $r->id_menu;?>">
+                    <img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?> " alt="gambar_menu <?php echo $r->id_menu;?>" width="250px" height="250px">
                     <h3><?php echo $r->nama;?></h3>
                     <div class="caption">
-                        <h4><span class="label label-default"><?php echo $r->harga;?></span>                             
-                           <button type="submit" name="submit" class="btn btn-default"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></button> 
+                        <p><center><h3><span class="label label-default">Rp.<?php echo $r->harga;?></span></h3></center></p>
+                        <p>
+                        <table>
+                            <center>
+                            <th>Jumlah</th>
+                            <th class="col-xs-7"><input class="form-control" id="ex2" type="text">
+                                
+                            </th>
+                            <th><a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></th>
+                            </center>
+                        </table>
+                        <!--</p>
+                           <button type="submit" name="submit" class="btn btn-default"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></button> -->
                         </h4>                            
                     </div>
                 </div>
