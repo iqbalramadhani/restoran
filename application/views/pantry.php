@@ -1,123 +1,123 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry</title>
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Header.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Footer.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>Admin-Pantry</title>
+  <!-- Bootstrap core CSS-->
+  <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap-admin.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="<?php echo base_url();?>vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="<?php echo base_url();?>assets/css/admin.css" rel="stylesheet">
 </head>
 
-<body>
-    <nav class="view-header">
-        <div class="container">
-        <div class="row">
-            <div class="col-sm col-md">
-                <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>/assets/gambar/logo.png"></a>
-                <div class="nama"><h4><b>Selamat Datang, <?php echo $this->session->userdata('nama_pengguna');?></b> </h4></div>            
-            </div>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="index.html" style="color: yellow;">Broto Resto</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-area-chart"></i>
+            <span class="nav-link-text">Chartsss</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Tables</span>
+          </a>
+        </li>
+        
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">Link</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        
+        <li>
+            <div class="nama" style="padding-top: 10px; color: white;"><h6><b>Selamat Datang, <?php echo $this->session->userdata('nama_pengguna');?></b> </h6></div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--content-->
+  <div class="content-wrapper">
+    <div class="container-fluid">
+    
+    </div>
+  </div>
+      
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2017</small>
         </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
         </div>
-    </nav>
-    <!menu>
-    <div class="">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <span class="visible-xs navbar-brand">Sidebar menu</span>
-                </div>
-                <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="title"><b>Pilihan Menu</b></li>
-                        <li><a href="#">Input Stok</a></li>
-                        <li><a href="#">Tampil Stok</a></li>
-                        <li><a href="#">Menu Item 3</a></li>
-                        <li><a href="#">Menu Item 4</a></li>
-
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-            </div>
+      </div>
     </div>
 
-    <!main>
-        <div class="nav-menu">
-            <div class="container" id="mycontainer">
-                <p><h4><center>Makanan(pantry)</center></h4></p>
-                <hr>
-                <!isi content>
-                <form class="bootstrap-form-with-validation">
-            <div class="form-group">
-                <label class="control-label" for="text-input">Id Menu</label>
-                <input class="form-control" type="text" name="text-input" id="text-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="password-input">Kategori</label>
-                <input class="form-control" type="text" name="password-input" id="password-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="email-input">nama</label>
-                <input class="form-control" type="text" name="email-input" id="email-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="textarea-input">Textarea </label>
-                <textarea class="form-control" name="textarea-input" id="textarea-input"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="search-input">Search Input Group</label>
-                <div class="input-group">
-                    <div class="input-group-addon"><span> <i class="glyphicon glyphicon-search"></i></span></div>
-                    <input class="form-control" type="search" name="search-input" id="search-input">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="file-input">File Input</label>
-                <input type="file" name="file-input" id="file-input">
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label class="control-label" for="checkbox-input">
-                        <input type="checkbox" name="checkbox-input">Checkbox</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group">Radio</label>
-                </div>
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group" checked="">Radio</label>
-                </div>
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group">Radio</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Static Control</label>
-                <p class="form-static-control">A basic template showing the proper way to create bootstrap forms using form group components, labels and input fields.</p>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Button</button>
-            </div>
-        </form>
-            </div>            
-        </div>
-    </div>
-    </div>
+  </div>
+  <!-- Bootstrap core JavaScript-->
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>
+  <!-- Custom scripts for all pages-->
+    <script src="<?php echo base_url();?>assets/js/sb-admin.min.js"></script>
+</body>
 
-    <!main>
+</html>
