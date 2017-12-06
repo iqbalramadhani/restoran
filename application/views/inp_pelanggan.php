@@ -31,10 +31,10 @@
         <h3 class="text-center">Silahkan Isi Nama untuk membeli Pesanan</h3>
         <div class="form-group round"> 
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 kanan">
+                    <div class="col-sm-3 col-md-4 kanan">
                         <h4>Hello,</h4>
                     </div>
-                    <div class="col-sm-10 col-md-5">
+                    <div class="col-sm-7 col-md-5">
                         <input type="text" name="nama_anda" class="form-control round" placeholder="Nama Anda" required="">
                     </div>
                 </div>
