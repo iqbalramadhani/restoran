@@ -39,15 +39,12 @@
         <li><?php echo anchor('pelanggan/menu_makanan','Makanan');?></li>
         <li><?php echo anchor('pelanggan/menu_minuman','Minuman');?></li>
         <li><?php echo anchor('pelanggan/menu_lain','Hidangan Lain');?></li>
-        <li><?php echo anchor('pelanggan/checout','Checout');?></li>
+        
         <li><?php echo anchor('pelanggan/selesai','Selesai');?></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="nav-right">
         <li>
-            <a aria-expanded="false" href="#">
-                <img src="<?php echo base_url();?>/assets/gambar/out.png">
-                <span class="badge">42</span>
-            </a>
+            <a aria-expanded="false" href="#"> <span></span><img src="<?php echo base_url();?>assets/gambar/out.png"><span class="badge">42</span></a>
         </li>
       </ul>
     </b>
@@ -57,34 +54,26 @@
     <div class="container spasi-T2 shadow">
         <!isi gambar>
         <div class="row">
-            <div class="col-sm-5 col-md-3">
-                <div class="thumbnail">
-                    <img src="<?php echo base_url();?>/assets/gambar/M1.png" alt="...">
-                    <div class="caption">
-                        <p><h3><span class="label label-default">Rp.25000</span> <a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></h3></p>
-                    </div>
-                </div>
-            </div>
             <?php
             foreach ($record->result() as $r){
             ?>
-            <div class="col-sm-3 col-md-3">
+            <div class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                    <img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?> " alt="gambar_menu <?php echo $r->id_menu;?>" width="250px" height="250px">
+                    <img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?> " alt="gambar_menu <?php echo $r->id_menu;?>" width="350px" height="350px">
                     <h3><?php echo $r->nama;?></h3>
                     <div class="caption">
                         <p><center><h3><span class="label label-default">Rp.<?php echo $r->harga;?></span></h3></center></p>
                         <p>
                         <table>
                             <center>
-                            <th>Jumlah</th>
+                            <th>Qty</th>
                             <th class="col-xs-7"><input class="form-control" id="ex2" type="text">
                                 
                             </th>
                             <th><a href="#" class="btn btn-default" role="button"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></a></th>
                             </center>
-                        </table>
-                        <!--</p>
+                        </table></p>
+                        <!--
                            <button type="submit" name="submit" class="btn btn-default"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></button> -->
                         </h4>                            
                     </div>
