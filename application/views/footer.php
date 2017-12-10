@@ -1,4 +1,3 @@
-<?php echo $contents;?>
 <footer>
         <div class="row container">
             <div class="col-md-4 col-sm-6 footer-navigation">
@@ -25,8 +24,6 @@
                <!-- <div class="social-links social-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-github"></i></a></div>-->
             </div>
         </div>
-    </footer>     
-    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-    <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+    </footer>    
 </body>
 </html>

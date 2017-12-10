@@ -9,6 +9,10 @@ class Model_pelanggan extends CI_Model {
             'nama'    => $nama,
             'tanggal' => date('Y-m-d')
         );
+        $this->session->set_userdata(array(
+                    'nama_pelanggan' => $nama,
+                    'status_input'   => 'oke'
+                ));
         $this->db->insert('pelanggan',$isi);
         //$pelanggan = $this->db->get_where('pelanggan',array('nama'=>$nama))->row_array();
         /*coba pake qury*/

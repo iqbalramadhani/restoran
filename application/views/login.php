@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Google-Style-Login.css">
@@ -15,14 +17,14 @@
 <body>
     <nav class="view-header">
         <div class="container">
-        <div class="row">
-            <div class="col-sm col-md">
-                <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>/assets/gambar/logo.png"></a>
-                <center><h1 class="slmt">SELAMAT DATANG</h1>
-                <h2 class="selamat">DAN SELAMAT BEKERJA DI RESTORAN PAK BROTO</h2></center>            
+            <div class="row">
+                <div class="col-sm col-md">
+                    <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>/assets/gambar/logo.png"></a>
+                    <center><h1 class="slmt">SELAMAT DATANG</h1>
+                    <h2 class="selamat">DAN SELAMAT BEKERJA DI RESTORAN PAK BROTO</h2></center>            
+                </div>
             </div>
         </div>
-    </div>
     </nav>
 
     <div class="container">
@@ -36,7 +38,7 @@
                         <h4>ID</h4>
                     </div>
                     <div class="col-sm-10 col-md-10">
-                        <input type="text" name="username" class="form-control round" placeholder="Nama Anda" autofocus="">
+                        <input type="text" name="username" class="form-control round" required="" placeholder="Nama Anda" autofocus="">
                     </div>
                 </div>
                 <div class="row">
@@ -44,31 +46,47 @@
                         <h4>Password</h4>
                     </div>
                     <div class="col-sm-10 col-md-10">
-                        <input type="password" name="password" class="form-control round" placeholder="Password Anda">
+                        <input type="password" name="password" class="form-control round" required="" placeholder="Password Anda">
                     </div>
                 </div>
             </div>        
          </div>
-
          <center>
          <div class="row">
             <div class="col-sm col-md">
-                <!--<button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" onclick="">MASUK</button>-->
-                <button type="submit" class="btn btn-default">MASUK<i class=""></i></button>
                 <?php
                 $info = $this->session->flashdata('info');
                 if(!empty($info))
-                {
-                    echo $info;
+                {?>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('.but').trigger('click');
+                        })
+                    </script>
+                <?php
                 }
-            ?>
-                <?php echo form_close();?>            
+                ?>
+                <!--<button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" onclick="">MASUK</button>-->
+                <button type="submit" class="btn btn-default">MASUK<i class=""></i></button>
             </div>
          </div>
          </center>
+            <?php echo form_close();?>
     </div>
     <div class="spasi-T2"></div>
-
+    
+    <!-- Modal -->
+        <div class="modal fade" role="dialog" id="myModal">
+          <div class="modal-dialog">
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;
+                  <b><?php echo $this->session->flashdata('info');?></b>
+                </div>
+          </div>
+        </div>
+        <button data-toggle="modal" data-target="#myModal" style="display:none;" class="but"></button>
+        
     <!footer>
     <footer>
         <div class="row container">
@@ -97,8 +115,5 @@
             </div>
         </div>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>

@@ -43,7 +43,7 @@ class Login extends CI_Controller {
                 redirect('pantry/cek_pantry');
             }
         }else{
-            $this->session->set_flashdata('info','maaf id atau kata sandi salah');
+            $this->session->set_flashdata('info','ID ATAU KATA SANDI ANDA SALAH !');
             redirect('login');
         }
     }
