@@ -79,7 +79,6 @@
         <div class="modal fade" role="dialog" id="myModal">
           <div class="modal-dialog">
                 <div class="alert alert-danger fade in">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;
                   <b><?php echo $this->session->flashdata('info');?></b>
                 </div>

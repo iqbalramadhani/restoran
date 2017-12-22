@@ -16,8 +16,7 @@ class Kasir extends CI_Controller {
     }
     
     public function tampil_kasir(){
-        $this->template->load('template','kasir');
-        //$this->load->view('pantry');
+        $this->load->view('kasir');
     }
     
     public function cek_kasir(){
@@ -27,6 +26,7 @@ class Kasir extends CI_Controller {
             $this->session->set_userdata(array('nama_pengguna'=>$data['nama_lengkap']));
             redirect('kasir/tampil_kasir');
         }else{
+            $this->session->set_flashdata('info','ANDA BUKAN KASIR !');
             redirect('kasir');
         }
     }

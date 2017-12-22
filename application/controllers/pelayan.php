@@ -10,8 +10,8 @@ class Pelayan extends CI_Controller {
     }
     
     public function tampil_pelayan(){
-        $this->template->load('template','pelayan');
-        //$this->load->view('pantry');
+        //$this->template->load('template','pelayan');
+        $this->load->view('pelayan');
     }
     
     public function index(){
@@ -28,6 +28,7 @@ class Pelayan extends CI_Controller {
             $this->session->set_userdata(array('nama_pengguna'=>$data['nama_lengkap']));
             redirect('pelayan/tampil_pelayan');
         }else{
+            $this->session->set_flashdata('info','ANDA BUKAN PELAYAN !');
             redirect('pelayan');
         }
     }

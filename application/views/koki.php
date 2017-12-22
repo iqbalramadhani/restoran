@@ -24,100 +24,74 @@
         </div>
         </div>
     </nav>
-    <!menu>
-    <div class="">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <span class="visible-xs navbar-brand">Sidebar menu</span>
-                </div>
-                <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="title"><b>Menu Item 1</b></li>
-                        <li><a href="#">Menu Item</a></li>
-                        <li><a href="#">Menu Item</a></li>
-                        <li><a href="#">Menu Item 3</a></li>
-                        <li><a href="#">Menu Item 4</a></li>
-
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-            </div>
+    <div class="collapse navbar-collapse" id="Mynav">
+    <b>
+      <ul class="nav navbar-nav navbar-right" id="log-right" style="padding-right: 15px;" >
+        <li>
+            <a aria-expanded="false" href="<?php echo base_url().'login/logout'?>"><img src="<?php echo base_url();?>assets/gambar/logout.png"> Logout</a>
+        </li>
+      </ul>
+    </b>
     </div>
+    
+    
+    <div class="container">
 
-    <!main>
-        <div class="nav-menu">
-            <div class="container" id="mycontainer">
-                <p><h4><center>Makanan(koki)</center></h4></p>
-                <hr>
-                <!isi content>
-                <form class="bootstrap-form-with-validation">
-            <div class="form-group">
-                <label class="control-label" for="text-input">Id Menu</label>
-                <input class="form-control" type="text" name="text-input" id="text-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="password-input">Kategori</label>
-                <input class="form-control" type="text" name="password-input" id="password-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="email-input">nama</label>
-                <input class="form-control" type="text" name="email-input" id="email-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="textarea-input">Textarea </label>
-                <textarea class="form-control" name="textarea-input" id="textarea-input"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="search-input">Search Input Group</label>
-                <div class="input-group">
-                    <div class="input-group-addon"><span> <i class="glyphicon glyphicon-search"></i></span></div>
-                    <input class="form-control" type="search" name="search-input" id="search-input">
+        <!--konten_utama-->
+        <div class="row thumbnail" style="padding-top: 20px;">
+            <div class="col-md-12 thumbnail" style="padding-left: 10px;">
+                <p>No Pesanan : ######</p>
+                <p>Nama : #########</p>
+                <div class="row">
+                <div class="col-lg-10 col-md-9 col-sm-9">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr style="background-color: skyblue; color: white;">
+                            <th>Banyak</th>
+                            <th>Nama Makanan/Minuman</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Karedok</td>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="file-input">File Input</label>
-                <input type="file" name="file-input" id="file-input">
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label class="control-label" for="checkbox-input">
-                        <input type="checkbox" name="checkbox-input">Checkbox</label>
+                
+                <div class="col-md-2 col-sm-2">
+                    <button type="button" class="btn btn-success"><img src="<?php echo base_url();?>/assets/gambar/checklist.png" width="130px" height="130px"></button>
                 </div>
+                </div>          
             </div>
-            <div class="form-group">
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group">Radio</label>
-                </div>
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group" checked="">Radio</label>
-                </div>
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group">Radio</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Static Control</label>
-                <p class="form-static-control">A basic template showing the proper way to create bootstrap forms using form group components, labels and input fields.</p>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Button</button>
-            </div>
-        </form>
-            </div>            
         </div>
+        <!--konten_utama-->
     </div>
-    </div>
-
-    <!main>
+    
+</body>
+</html>

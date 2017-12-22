@@ -16,8 +16,8 @@ class Koki extends CI_Controller {
     }
     
     public function tampil_koki(){
-        $this->template->load('template','koki');
-        //$this->load->view('pantry');
+        //$this->template->load('template','koki');
+        $this->load->view('koki');
     }
     
     public function cek_koki(){
@@ -27,6 +27,7 @@ class Koki extends CI_Controller {
             $this->session->set_userdata(array('nama_pengguna'=>$data['nama_lengkap']));
             redirect('koki/tampil_koki');
         }else{
+            $this->session->set_flashdata('info','ANDA BUKAN KOKI !');
             redirect('koki');
         }
     }

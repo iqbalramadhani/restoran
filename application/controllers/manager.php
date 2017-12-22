@@ -16,7 +16,8 @@ class Manager extends CI_Controller {
     }
     
     public function tampil_manager(){
-        $this->template->load('template','manager');
+        //$this->template->load('template','manager');
+        $this->load->view('manager');
         //$this->load->view('pantry');
     }
     
@@ -27,6 +28,7 @@ class Manager extends CI_Controller {
             $this->session->set_userdata(array('nama_pengguna'=>$data['nama_lengkap']));
             redirect('manager/tampil_manager');
         }else{
+            $this->session->set_flashdata('info','ANDA BUKAN MANAGER !');
             redirect('manager');
         }
     }

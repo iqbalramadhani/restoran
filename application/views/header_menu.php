@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Footer.css">
+    
 </head>
 
 <body>
@@ -41,7 +42,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right" id="nav-right">
         <li>
-            <a aria-expanded="false" href="<?php echo base_url().'pelanggan/checkout';?>"> <span></span><img src="<?php echo base_url();?>assets/gambar/out.png"><span class="badge">42</span></a>
+            <a aria-expanded="false" href="<?php echo base_url().'pelanggan/checkout';?>"> <span></span><img src="<?php echo base_url();?>assets/gambar/out.png"><span class="badge" id="jumlah_cart">0</span></a>
         </li>
       </ul>
     </b>
