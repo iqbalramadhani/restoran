@@ -20,6 +20,7 @@ class Pelanggan extends CI_Controller {
         if(isset($_POST['submit'])){
             $nama  = $this->input->post('nama_anda',true);
             $this->model_pelanggan->post($nama);
+            $this->model_pelanggan->data_user($nama);
             redirect('pelanggan/menu');
         }else{
             $this->load->view('inp_pelanggan');
@@ -30,10 +31,10 @@ class Pelanggan extends CI_Controller {
         //echo 'proses';
         $data['record'] = $this->model_pelanggan->tampil_data();
         //$this->template->load('customer',$data);
-        //$this->load->view('header_menu');
-        $this->load->view('customer_material',$data);
-        //$this->load->view('customer',$data);
-        //$this->load->view('footer');
+        $this->load->view('header_menu');
+        //$this->load->view('customer_material',$data);
+        $this->load->view('customer',$data);
+        $this->load->view('footer');
         
     }
      
@@ -79,6 +80,7 @@ class Pelanggan extends CI_Controller {
         $jumlah = 0;
         foreach ($this->cart->contents() as $b){
             echo '<tr>
+                    
                     <td>'.$b['qty'].'</td>
                     <td>'.$b['name'].'</td>
                     <td>'.$b['price'].'</td>
@@ -88,11 +90,10 @@ class Pelanggan extends CI_Controller {
             $no++;
             $jumlah = $jumlah+$b['qty'];
         }
-        echo '<tr>
+        echo '  <tr>
                 <th colspan="3">Total</th>
-                <th>'.'Rp '.$this->cart->total().'</th>
-                <th><button  class="pesan1 btn btn-primary">Pesan</button></th>
-            </tr>';
+                <th colspan="2">'.'Rp '.$this->cart->total().'</th>';
+            
     }
     
     function jumlah(){
@@ -114,4 +115,25 @@ class Pelanggan extends CI_Controller {
         echo $this->show_cart();
     }
     
+    function pesan(){
+        $id = $this->session->userdata('id_pelanggan');
+        $hasil = array();
+        foreach ($this->cart->contents() as $r){
+            $hasil[] = array(
+                'id_menu'      => $r['id'],
+                'id_pelanggan' => $id,
+                'jumlah'       => $r['qty'],
+                'status'       => '0'
+            );
+            
+        }
+        //die(print_r($hasil));
+        $this->model_pelanggan->pesan($hasil);
+        $this->session->set_userdata(array('pesanan'=>'oke'));
+    }
+    
+    function cek(){
+        echo $this->session->userdata('pesanan');
+        //die(print_r($this->session->userdata('pesanan')));
+    }
 }

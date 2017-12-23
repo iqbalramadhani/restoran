@@ -9,21 +9,31 @@ class Model_pelanggan extends CI_Model {
             'nama'    => $nama,
             'tanggal' => date('Y-m-d')
         );
-        $this->session->set_userdata(array(
-                    'nama_pelanggan' => $nama,
-                    'status_input'   => 'oke'
-                ));
         $this->db->insert('pelanggan',$isi);
-        //$pelanggan = $this->db->get_where('pelanggan',array('nama'=>$nama))->row_array();
-        /*coba pake qury*/
         
     }
     
     function data_user($nama){
-        return $this->db->get_where('pelanggan',array('nama'=>$nama));
+        $query = "SELECT * 
+                  FROM pelanggan 
+                  WHERE nama = '$nama'
+                  ORDER BY id_pelanggan DESC
+                  LIMIT 1";
+        $hasil = $this->db->query($query)->row_array();
+        $this->session->set_userdata(array(
+                    'id_pelanggan'   => $hasil['id_pelanggan'],
+                    'nama_pelanggan' => $hasil['nama'],
+                    'status_input'   => 'oke'
+                ));
+        //die(print_r($this->session->userdata('nama_pelanggan')));
+        return $hasil; 
     }
     
     function tampil_data(){
         return $this->db->get('makanan');
+    }
+    
+    function pesan($hasil){
+        return $this->db->insert_batch('pesanan_detail',$hasil);
     }
 }

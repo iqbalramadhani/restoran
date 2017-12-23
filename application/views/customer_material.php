@@ -114,17 +114,17 @@
         <?php foreach ($record->result() as $r){ ?>
             <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
               <div class="mdl-card__media">
-                <a id="show-dialog1" class="posisi"><img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?>">
+                <a id="show-dialog" class="posisi"><img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?>">
                   <div class="centered"><?php echo $r->nama;?></div>
                 </a>
               </div>
               <p><center><h7><b><?php echo 'Rp.'.$r->harga;?></b></h7></center></p>
             </div>
-         <?php } ?>
+         <?php }?>
         </div>
           
 
-  <button id="show-dialog" type="button" class="mdl-button">Show Dialog</button>
+  <button id="show-dialog1" type="button" class="mdl-button">Show Dialog</button>
   <dialog class="mdl-dialog">
     <h6 class="mdl-dialog__title">Nasi Ayam</h6>
     <div class="mdl-dialog__content">
@@ -154,7 +154,7 @@
     
     var dialog = document.querySelector('dialog');
     var showDialogButton = document.querySelector('#show-dialog');
-    if (! dialog.showModal) {
+    if (! 8 dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
     showDialogButton.addEventListener('click', function() {

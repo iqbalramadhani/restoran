@@ -5,7 +5,7 @@ class Koki extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->model('model_login');
+        $this->load->model(array('model_login','model_koki'));
         //cek_session();
     }
     
@@ -16,8 +16,10 @@ class Koki extends CI_Controller {
     }
     
     public function tampil_koki(){
-        //$this->template->load('template','koki');
-        $this->load->view('koki');
+        $data['record'] = $this->model_koki->tampil_pesanan()->result();
+        //die(print_r($data));
+        $this->load->view('koki',$data);
+        $this->load->view('footer');
     }
     
     public function cek_koki(){
@@ -30,6 +32,11 @@ class Koki extends CI_Controller {
             $this->session->set_flashdata('info','ANDA BUKAN KOKI !');
             redirect('koki');
         }
+    }
+    
+    function pesanan_selesai(){
+        $id = $this->input->post("id");
+        $this->model_koki->pesanan_selesai($id);
     }
     
 }
