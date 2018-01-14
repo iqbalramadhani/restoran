@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kasir</title>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
+    <link rel="stylesheet" href="<?php echo base_url();?>https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Footer.css">
 </head>
 
 <body>
+<script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#pencarian').change(function(){
+            $.ajax({
+                url : "<?php echo base_url();?>kasir/pesanan_cari",
+                method : "POST",
+                data : {id : id},
+                success :function(data){
+                }
+            });
+        });
+        
+        $('.bayar').click(function(){
+            var id = $(this).attr("data-id");
+            $.ajax({
+                url : "<?php echo base_url();?>kasir/bayar",
+                method : "POST",
+                data : {id : id},
+                success :function(data){
+                    $('#pesanan'+id).fadeOut(2000);
+                }
+            });
+        });
+    });
+</script>
+
     <nav class="view-header">
         <div class="container">
         <div class="row">
@@ -24,100 +50,81 @@
         </div>
         </div>
     </nav>
-    <!menu>
-    <div class="">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <span class="visible-xs navbar-brand">Sidebar menu</span>
-                </div>
-                <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="title"><b>Menu Item 1</b></li>
-                        <li><a href="#">Menu Item</a></li>
-                        <li><a href="#">Menu Item</a></li>
-                        <li><a href="#">Menu Item 3</a></li>
-                        <li><a href="#">Menu Item 4</a></li>
 
-                    </ul>
-                </div><!--/.nav-collapse -->
-            </div>
-            </div>
+  <nav class="navbar-default" role="" >
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style="background-color: orange;">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-
-    <!main>
-        <div class="nav-menu">
-            <div class="container" id="mycontainer">
-                <p><h4><center>Makanan(kasir)</center></h4></p>
-                <hr>
-                <!isi content>
-                <form class="bootstrap-form-with-validation">
-            <div class="form-group">
-                <label class="control-label" for="text-input">Id Menu</label>
-                <input class="form-control" type="text" name="text-input" id="text-input">
+  </nav>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color: orange;">
+        <b>
+          <ul class="nav navbar-nav" id="navbar">
+           <div style="margin: auto;">
+            <div class="col-sm-7 col-md-7" style="padding-top: 7px;">
+              <div class="input-group-btn">
+                  <input type="text" class="form-control" id="pencarian" placeholder="Pencarian" >
+              </div>
+                <p id="hasil"></p>
+             </div>
+           </div>
+           <li style="float: right; padding-right: 25px;">
+               <a aria-expanded="false" href="<?php echo base_url();?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+           </li>
+         </ul>
+        </b>
+    </div>
+    
+    <!containt>
+    <div class="container" style="padding-top: 20px;">
+        <div id="tampil" class="row thumbnail" style="padding-top: 20px;">
+            <?php foreach ($record as $r){?>
+              <div id="pesanan<?php echo $r->id_pesanan;?>" class="col-md-12 thumbnail">
+                <p>No Pesanan : <?php echo $r->id_pesanan;?></p>
+                <p>Nama       : <?php echo $r->nama;?></p>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr style="background-color: skyblue; color: white;">
+                        <th>Banyak</th>
+                        <th>Pesanan</th>
+                        <th>Harga</th>
+                        <th>Total</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                            $pecah  = explode(",",$r->nama_pesanan);
+                            $pecah1 = explode(",",$r->jumlah);
+                            $pecah2 = explode(",",$r->harga);
+                            $total = 0;
+                            for ($i=0;$i<count($pecah);$i++){
+                      ?>
+                                <tr>
+                                    <td ><?php echo $pecah1[$i];?></td>
+                                    <td><?php echo $pecah[$i];?></td>
+                                    <td><?php echo 'Rp.'.$pecah2[$i];?></td>
+                                    <td><?php echo 'Rp.'.$pecah2[$i]*$pecah1[$i];?></td>
+                                    <td></td>
+                                </tr>
+                      <?php
+                          $total = $total+$pecah2[$i]*$pecah1[$i];
+                          }
+                      ?>
+                      <tr>
+                        <th colspan="3">Total</th>
+                        <th>Rp.<?php echo $total;?></th>
+                        <td><a href="<?php echo base_url().'kasir/pdf/'.$r->id_pesanan.'/'.$r->nama;?>" class="bayar btn btn-default" target="_blank"  data-id="<?php echo $r->id_pesanan;?>">Bayar</a>
+                            </td>
+                      </tr>
+                    </tbody>
+                  </table>
             </div>
-            <div class="form-group">
-                <label class="control-label" for="password-input">Kategori</label>
-                <input class="form-control" type="text" name="password-input" id="password-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="email-input">nama</label>
-                <input class="form-control" type="text" name="email-input" id="email-input">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="textarea-input">Textarea </label>
-                <textarea class="form-control" name="textarea-input" id="textarea-input"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="search-input">Search Input Group</label>
-                <div class="input-group">
-                    <div class="input-group-addon"><span> <i class="glyphicon glyphicon-search"></i></span></div>
-                    <input class="form-control" type="search" name="search-input" id="search-input">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="file-input">File Input</label>
-                <input type="file" name="file-input" id="file-input">
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label class="control-label" for="checkbox-input">
-                        <input type="checkbox" name="checkbox-input">Checkbox</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group">Radio</label>
-                </div>
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group" checked="">Radio</label>
-                </div>
-                <div class="radio">
-                    <label class="control-label">
-                        <input type="radio" name="radio-group">Radio</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Static Control</label>
-                <p class="form-static-control">A basic template showing the proper way to create bootstrap forms using form group components, labels and input fields.</p>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Button</button>
-            </div>
-        </form>
-            </div>            
+            <?php } ?>
         </div>
     </div>
-    </div>
-
-    <!main>

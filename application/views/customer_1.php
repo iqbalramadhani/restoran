@@ -1,46 +1,106 @@
 <!isi>
-    <div class="container spasi-T2 shadow">
+
+<link rel="stylesheet" href="<?php echo base_url();?>assets/materialize/css/materialize.min.css">
+    <div class="container">
         <!isi gambar>
-        <div class="row">
-            <?php foreach ($record->result() as $r){ ?>
-                <div class="col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <img src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto;?> " alt="gambar_menu <?php echo $r->id_menu;?>" width="350px" height="350px">
-                        <h3><?php echo $r->nama;?></h3>
-                        <div class="caption">
-                            <p><center><h3><span class="label label-default">Rp.<?php echo $r->harga;?></span></h3></center></p>
-                            <p>
-                            <table>
-                              <center>
-                                <th>Qty</th>
-                                <th class="col-xs-7">
-                                    <input type="number" name="quantity" id="<?php echo $r->id_menu;?>" class="quantity form-control">
-                                </th>
-                                <th>
-                                    <button class="add_cart btn btn-default"
-                                            data-id_menu="<?php echo $r->id_menu;?>" 
-                                            data-nama_menu="<?php echo $r->nama;?>" 
-                                            data-harga="<?php echo $r->harga;?>">
-                                        <img src="<?php echo base_url();?>/assets/gambar/Y.png">
-                                    </button>
-                                </th>
-                                    
-                              </center>
-                            </table></p>
-                            <!--
-                               <button type="submit" name="submit" class="btn btn-default"><img src="<?php echo base_url();?>/assets/gambar/Y.png"></button> -->
-                            </h4>                            
-                        </div>
-                    </div>
+        
+      <div class="row">
+          
+        <?php foreach ($record->result() as $r):?>
+            <div class="col s10 m5">
+              <div class="card">
+                <div class="card-image">
+                    <a class="modal-trigger" href="#modal1"><img class="gambar" src="<?php echo base_url();?>/assets/gambar/makanan/<?php echo $r->foto?>"></a>
+                  <span class="card-title">Card Title</span>
                 </div>
-            <?php } ?>
+                <div class="card-content">
+                  <p>I am a very simple card. I am good at containing small bits of information.
+                  I am convenient because I require little markup to use effectively.</p>
+                </div>
+                <div class="card-action">
+                  <a href="#">This is a link</a>
+                </div>
+              </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="col s10 m5">
+          <div class="card">
+            <div class="card-image">
+              <img src="<?php echo base_url();?>/assets/gambar/makanan/Lotek.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
         </div>
+        <div class="col s10 m5">
+          <div class="card">
+            <div class="card-image">
+              <img src="<?php echo base_url();?>/assets/gambar/makanan/Lotek.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s10 m5">
+          <div class="card">
+            <div class="card-image">
+              <img src="<?php echo base_url();?>/assets/gambar/makanan/Lotek.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="<?php echo base_url();?>/assets/gambar/makanan/Lotek.jpg">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+      </div>
+  </div>
+
 <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>assets/materialize/js/materialize.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         jumlah();
+        $('.modal').modal();
         
        $('.add_cart').click(function(){
           var id_menu   = $(this).data("id_menu");

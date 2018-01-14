@@ -30,10 +30,37 @@ class Model_pelanggan extends CI_Model {
     }
     
     function tampil_data(){
-        return $this->db->get('makanan');
+        $query = "SELECT *
+                  FROM menu
+                  WHERE id_menu <> ALL (SELECT DISTINCT (resep.id_menu)
+                                        FROM resep JOIN bahan USING (id_bahan)
+                                        WHERE resep.jumlah > bahan.jumlah)";
+        return $this->db->query($query);
+        
     }
     
-    function pesan($hasil){
-        return $this->db->insert_batch('pesanan_detail',$hasil);
+    function pesan($id){
+        $data = array(
+                'id_pelanggan' => $id,
+                'tanggal'      => date('Y-m-d')
+            );
+        $this->db->insert('pesanan',$data);
+        return $this->db->get_where('pesanan',array('id_pelanggan'=>$id))->row_array();
+    }
+            
+    function pesanan_detail($hasil){
+        $this->db->insert_batch('pesanan_detail',$hasil);
+    }
+    
+    function update_bahan($id,$jumlah){
+        $query = "SELECT id_bahan,jumlah FROM resep WHERE id_menu = '$id'";
+        $hasil = $this->db->query($query)->result();
+        //die(print_r($hasil));
+        foreach ($hasil as $r){
+            $query = "UPDATE bahan 
+                      SET jumlah = jumlah - ($r->jumlah*$jumlah)  
+                      WHERE id_bahan = '$r->id_bahan'";
+            $this->db->query($query);
+        }
     }
 }

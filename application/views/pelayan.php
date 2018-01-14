@@ -34,62 +34,54 @@
     <b>
       <ul class="nav navbar-nav navbar-right" id="log-right" style="padding-right: 15px;" >
         <li>
-            <a aria-expanded="false" href="<?php echo base_url().'login/logout'?>"><img src="<?php echo base_url();?>assets/gambar/logout.png" > Logout</a>
+            <a aria-expanded="false" href="<?php echo base_url().'login/logout'?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
         </li>
       </ul>
     </b>
     </div>
     
     <!containt>
-    <div class="container">
-        <!--main-content-table__kodingan looping -->
+    <div class="container" style="padding-top: 20px;">
         <!--konten_utama-->
         <div class="row thumbnail" style="padding-top: 20px;">
-            <div class="col-md-12 thumbnail" style="padding-left: 10px;">
-                <p>No Pesanan : ######</p>
-                <p>Nama Pemesan : #########</p>
+            <?php foreach ($record as $r):?>
+            <div id="data_<?php echo $r->id_pesanan;?>" class="col-md-12 thumbnail" style="padding-left: 10px;">
+                <p>No Pesanan : <?php echo $r->id_pesanan;?></p>
+                <p>Nama : <?php echo $r->nama;?></p>
                 <div class="row">
-                <div class="col-lg-10 col-md-9 col-sm-9">
-                <table class="table table-bordered">
-                    <thead>
+                  <div class="col-lg-10 col-md-9 col-sm-9">
+                    <table class="table table-bordered">
+                     <thead>
                         <tr style="background-color: skyblue; color: white;">
                             <th>Banyak</th>
-                            <th>Pesanan</th>
+                            <th>Nama Makanan/Minuman</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Karedok</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Karedok</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Karedok</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Karedok</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Karedok</td>
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                </div>
-                
-                <div class="col-md-1 col-sm-2">
+                     </thead>
+                     <tbody>
+                        <?php 
+                            //$pecah = explode(",",$r->jumlah);
+                            $pecah = explode(",",$r->nama_pesanan);
+                            $pecah2 = explode(",",$r->jumlah);
+                            for ($i=0;$i<count($pecah);$i++){
+                        ?>
+                                <tr>
+                                    <td><?php echo $pecah2[$i];?></td>
+                                    <td><?php echo $pecah[$i];?></td>
+                                </tr>
+                        <?php
+                            }
+                        ?>
+                     </tbody>
+                    </table>
+                  </div>
+                  <div class="col-md-1 col-sm-2">
                     <button type="submit" class="btn btn-info">Antar</button>
                     <p> </p>
                     <button type="submit" class="btn btn-success">Bayar</button>
                 </div>
                 </div>          
             </div>
+          <?php endforeach; ?>
         </div>
         <!--main-content-table-->
     </div>

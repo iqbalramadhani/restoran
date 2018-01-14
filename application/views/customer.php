@@ -1,7 +1,7 @@
 <!isi>
-    <div class="container spasi-T2 shadow">
+<div class="container spasi-T2 shadow" style=" padding-top: 20px; ">
         <!isi gambar>
-        <div class="row">
+        <div class="row" style="padding-top: 20px;">
             <?php foreach ($record->result() as $r){ ?>
                 <div class="col-sm-6 col-md-3">
                     <div class="thumbnail">

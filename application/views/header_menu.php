@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Footer.css">
     
+     
+    
 </head>
 
 <body>

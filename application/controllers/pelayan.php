@@ -5,13 +5,14 @@ class Pelayan extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->model('model_login');
+        $this->load->model(array('model_login','model_pelayan'));
         //cek_session();
     }
     
     public function tampil_pelayan(){
-        //$this->template->load('template','pelayan');
-        $this->load->view('pelayan');
+        $data['record'] = $this->model_pelayan->tampil_pesanan()->result();
+        $this->load->view('pelayan',$data);
+        $this->load->view('footer');
     }
     
     public function index(){

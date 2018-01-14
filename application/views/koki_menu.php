@@ -1,103 +1,145 @@
-<!DOCTYPE html>
-<html>
 
+<div class="container" style="padding-top : 15px;">
+        <!--konten_utama-->
+        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon-plus"></span> Tambah</button>
+        <div style="padding-top : 15px;"></div>
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <!-- Table -->
+            <table class="table">
+                <tr class="text-center" style="">
+                    <th>No.</th>
+                    <th>Menu</th>
+                    <th>Harga</th>
+                    <th>Bahan</th>
+                    <th>Baha Tersedia</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+                <tbody>
+                <?php
+                    $no = 1;
+                    foreach ($menu as $m):
+                ?>
+                    <tr>
+                        <td><?php echo $no;?></td>
+                        <td><?php echo $m->nama;?></td>
+                        <td><?php echo $m->harga;?></td>
+                        <td>
+                            <ul>
+                            <?php 
+                                $pecah  = explode(",",$m->jumlah);
+                                $pecah1 = explode(",",$m->bahan);
+                                for($i=0;$i<count($pecah);$i++){
+                            ?>
+                                <li><?php echo $pecah[$i].' '.$pecah1[$i];?></li>   
+                            <?php
+                                }
+                            ?>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                            <?php 
+                                $pecah2 = explode(",",$m->jumlah_bahan);
+                                for($i=0;$i<count($pecah2);$i++){
+                                    if($pecah2[$i]>=$pecah[$i]){
+                                        echo '<li><font color="green" style="bold">'.$pecah2[$i].' '.$pecah1[$i].'</font></li>';
+                                    }else{
+                                        echo '<li><font color="red" style="bold">'.$pecah2[$i].' '.$pecah1[$i].'</font></li>';
+                                    } 
+                                }
+                            ?>
+                            </ul>
+                        </td>
+                        <td><img src="<?php echo base_url();?>assets/gambar/makanan/<?php echo $m->foto;?>" width="180" height="120" alt="Lotek"></td>
+                        <td>
+                            <a href="" class="btn btn-primary">Edit</a>
+                            <a href="<?php echo base_url();?>koki/hapus_menu/<?php echo $m->id_menu;?>" class="btn btn-danger">Hapus</a>
+                        </td>
+                    </tr>
+                <?php 
+                    $no++;
+                    endforeach; 
+                ?>
+                </tbody>    
+            </table>
+        </div>
+    <!--konten_utama-->
+</div>    
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koki</title>
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/styles.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Header.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/Pretty-Footer.css">
-</head>
-
-<body>
-    
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Tambah Menu</h4>
+      </div>
+      <?php echo form_open_multipart('koki/simpan_menu');?>
+       <div class="modal-body"> 
+            <table class="table">
+                <tr>
+                    <td><label for="recipient-name" class="control-label">Nama Menu</label></td>  
+                    <td colspan="2"><input type="text" name="nama" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td><label for="recipient-name" class="control-label">Kategori</label></td>  
+                    <td colspan="2">
+                        <input type="radio" name="kategori" value="1"> Makanan
+                        <input type="radio" name="kategori" value="2"> Minuman
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="recipient-name" class="control-label">Harga</label></td>
+                    <td colspan="2"><input type="text" name="harga" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="file" name="foto" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" id="BahanTambah" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Tambah</button>
+                    </td>
+                    <td id="bahan">
+                    </td>
+                </tr>
+            </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="simpan">SIMPAN</button>
+      </div>
+      </form>  
+    </div>
+  </div>
+</div>
 <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.selesai').on('click',function(){
-            var id = $(this).attr("data-id");
-            $.ajax({
-                url : "<?php echo base_url();?>koki/pesanan_selesai",
-                method : "POST",
-                data : {id : id},
-                success :function(data){
-                    $("#data_"+id).fadeOut();
-                }
-            });
-            //alert(id); 
-        });
-        
+       var id = 1;
+       $('#simpan').click(function(){ 
+           //alert("Holla");
+           //$('#exampleModal').modal("hide");
+       });
+       
+       $('#BahanTambah').click(function(){
+           //lert("Holla");
+           $('#bahan').append('<div id="'+id+'" class="input-group" style="padding-top: 5px;"><input list="bahan1" name="bahan[]" class="form-control" placeholder="Nama Bahan" style="width: 240px;"><input  name="qty[]" class="form-control" placeholder="Jumlah" style="width: 100px;">&nbsp;<button data-id="'+id+'" class="hapus_bahan btn btn-danger" type="button">Hapus</button></div>');               
+           id++;
+       });
+       
+       $(document).on('click','.hapus_bahan',function(){
+           var id = $(this).attr("data-id");
+           //alert(id);
+           $('#'+id).fadeOut(800,function(){
+               $('#'+id).remove();
+           });
+       });
     });
 </script>
-    <nav class="view-header">
-        <div class="container">
-        <div class="row">
-            <div class="col-sm col-md">
-                <a class="navbar-link logo" href=""><img src="<?php echo base_url();?>/assets/gambar/logo.png"></a>
-                <div class="nama"><h4><b>Selamat Datang, <?php echo $this->session->userdata('nama_pengguna');?></b> </h4></div>            
-            </div>
-        </div>
-        </div>
-    </nav>
-    <div class="collapse navbar-collapse" id="Mynav">
-    <b>
-      <ul class="nav navbar-nav navbar-right" id="log-right" style="padding-right: 15px;" >
-        <li>
-            <a caria-expanded="false" href="<?php echo base_url().'login/logout'?>"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-        </li>
-      </ul>
-    </b>
-    </div>
-    
-    
-    <div class="container">
-
-        <!--konten_utama-->
-        <div id="pesanan" class="row thumbnail" style="padding-top: 20px;">
-          <?php foreach ($record as $r):?>
-            <div id="data_<?php echo $r->id_pelanggan;?>" class="col-md-12 thumbnail" style="padding-left: 10px;">
-                <p>No Pesanan : <?php echo $r->id_pelanggan;?></p>
-                <p>Nama : <?php echo $r->nama;?></p>
-                <div class="row">
-                  <div class="col-lg-10 col-md-9 col-sm-9">
-                    <table class="table table-bordered">
-                     <thead>
-                        <tr style="background-color: skyblue; color: white;">
-                            <th>Banyak</th>
-                            <th>Nama Makanan/Minuman</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <?php 
-                            //$pecah = explode(",",$r->jumlah);
-                            $pecah = explode(",",$r->nama_pesanan);
-                            $pecah2 = explode(",",$r->jumlah);
-                            for ($i=0;$i<count($pecah);$i++){
-                        ?>
-                                <tr>
-                                    <td><?php echo $pecah2[$i];?></td>
-                                    <td><?php echo $pecah[$i];?></td>
-                                </tr>
-                        <?php
-                            }
-                        ?>
-                     </tbody>
-                    </table>
-                  </div>
-                  <div class="col-md-2 col-sm-2">
-                      <button type="button" data-id="<?php echo $r->id_pelanggan;?>" class="selesai btn btn-success"><img src="<?php echo base_url();?>/assets/gambar/Y.png" width="130px" height="130px" alt="Selesai"></button>
-                  </div>
-                </div>          
-            </div>
-          <?php endforeach; ?>
-        </div>
-        <!--konten_utama-->
-    </div>
-    
-</body>
-</html>
+<datalist id="bahan1">
+    <?php foreach ($bahan as $b){ ?>
+        <option value="<?php echo $b->nama_bahan;?>"></option>
+    <?php } ?>
+</datalist>

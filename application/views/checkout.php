@@ -15,7 +15,7 @@
     </tbody>
       <tr>
           <td colspan="5" style="border: none">
-            <button  class="pesan_sekarang btn btn-primary">Pesan Sekarang !</button>
+              <button  id="pesan_sekarang" class="btn btn-primary">Pesan Sekarang !</button>
         </td>
       </tr>
   </table>
@@ -59,14 +59,15 @@
           });
         }
         
-        $(document).on('click','.pesan_sekarang', eventClick);
+        $('#pesan_sekarang').click(eventClick);
+        //$(document).on('click','#pesan_sekarang', );
         
         function eventClick(){      
             $.ajax({
-                url : "<?php echo base_url();?>pelanggan/pesan", 
-                
+                url : "<?php echo base_url();?>pelanggan/pesan",
+                method : "GET",
                 success :function(data){
-                    alert("Pesanan Anda Sedang Dibuat");
+                    //alert("Pesanan Anda Sedang Dibuat");
                     cek();
                     //$('.pesan_sekarang').attr('class','pesan_sekarang btn btn-primary disabled');
                 }
@@ -80,9 +81,7 @@
                 success :function(data){
                     //alert(data);
                     if(data==="oke"){
-                        $(document).on($('.pesan_sekarang').attr('class','pesan_sekarang btn btn-primary disabled')); 
-                    }else{
-                        $('.pesan_sekarang').attr('class','pesan_sekarang btn btn-primary');
+                        $('#pesan_sekarang').attr("disabled","disabled");
                     }
                 }
           });
