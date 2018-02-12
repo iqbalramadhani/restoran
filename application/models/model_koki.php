@@ -7,15 +7,15 @@ class Model_koki extends CI_Model {
     function tampil_pesanan(){
         $query = "SELECT p.id_pesanan,pl.nama,p.id_pelanggan,GROUP_CONCAT(pd.jumlah) as jumlah,GROUP_CONCAT(m.nama) as nama_pesanan 
                   FROM menu as m JOIN pesanan_detail as pd JOIN pesanan as p JOIN pelanggan as pl 
-                  WHERE pd.id_menu = m.id_menu AND pd.id_pesanan = p.id_pesanan AND p.id_pelanggan = pl.id_pelanggan AND pd.status_pesanan = '0' 
+                  WHERE pd.id_menu = m.id_menu AND pd.id_pesanan = p.id_pesanan AND p.id_pelanggan = pl.id_pelanggan AND p.status_pesanan = '0' 
                   GROUP BY pd.id_pesanan LIMIT 1";
-        $hasil = $this->db->query($query)->result();
+        $hasil = $this->db->query($query);
         return $hasil;
     }
     
     function pesanan_selesai($id){
         $this->db->where('id_pesanan',$id);
-        $this->db->update('pesanan_detail',array('status_pesanan'=>'1'));
+        $this->db->update('pesanan',array('status_pesanan'=>'1'));
     }
     
     function menu(){

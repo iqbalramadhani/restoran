@@ -5,10 +5,10 @@ class Pelanggan extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('model_pelanggan','model_koki'));
+        $this->load->model('model_pelanggan');
         //cek_session();
     }
-    
+     
     public function index(){
         $this->cart->destroy();
         $this->session->sess_destroy();
@@ -30,12 +30,25 @@ class Pelanggan extends CI_Controller {
     public function menu(){
         //echo 'proses';
         $data['record'] = $this->model_pelanggan->tampil_data();
-        $this->load->view('header_menu');
+        //$this->template->load('pelanggan',$data);
         //$this->load->view('customer_material',$data);
-        $this->load->view('customer',$data);
-        //$this->load->view('customer_1',$data);
-        $this->load->view('footer');
+        $this->load->view('header_menu');
+        $this->load->view('pelanggan',$data);
         
+    }
+
+    public function menu2(){
+        //echo 'proses';
+        $data['record'] = $this->model_pelanggan->tampil_data2();
+        //$this->template->load('pelanggan',$data);
+        //$this->load->view('customer_material',$data);
+        $this->load->view('header_menu');
+        $this->load->view('pelanggan',$data);
+        
+    }
+
+    public function feedback(){
+       $this->load->view('feedback'); 
     }
      
     public function selesai(){
@@ -47,7 +60,6 @@ class Pelanggan extends CI_Controller {
         $data['baris'] = $this->cart->contents();
         $this->load->view('header_menu');
         $this->load->view('checkout');
-        $this->load->view('footer');
     }
     
     public function pesanan(){
@@ -64,9 +76,8 @@ class Pelanggan extends CI_Controller {
             'price' => $this->input->post('produk_harga'),
             'name' => $this->input->post('produk_nama') 
         );
-
         $this->cart->insert($data);
-        //die(print_r($this->cart->contents()));
+        die(print_r($this->cart->contents()));
         echo $this->show_cart(); //tampilkan cart setelah added
     }
     
@@ -78,19 +89,21 @@ class Pelanggan extends CI_Controller {
         $no=1;
         $jumlah = 0;
         foreach ($this->cart->contents() as $b){
-            echo '<tr>          
-                    <td>'.$b['qty'].'</td>
-                    <td>'.$b['name'].'</td>
-                    <td>'.$b['price'].'</td>
-                    <td>'.$b['subtotal'].'</td>
-                    <td><button type="button" id="'.$b['rowid'].'" class="hapus_cart btn btn-danger btn-xs">Batal</button></td>
+            echo '<tr>
+                    <td class="mdl-data-table__cell--non-numeric">'.$b['qty'].'</td>
+                    <td class="mdl-data-table__cell--non-numeric">'.$b['name'].'</td>
+                    <td class="mdl-data-table__cell--non-numeric">'.$b['price'].'</td>
+                    <td class="mdl-data-table__cell--non-numeric">'.$b['subtotal'].'</td>
+                    <td>
+                          <button type="button" id="'.$b['rowid'].'" class="hapus_cart mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent"><i class="material-icons">clear</i></button>
+                        </td>
                   </tr>';
             $no++;
             $jumlah = $jumlah+$b['qty'];
         }
         echo '  <tr>
                 <th colspan="3">Total</th>
-                <th colspan="2">'.'Rp '.$this->cart->total().'</th>';
+                <th>'.'Rp '.$this->cart->total().'</th>';
             
     }
     
@@ -128,12 +141,65 @@ class Pelanggan extends CI_Controller {
             //die(print_r($id));
             $this->model_pelanggan->update_bahan($id,$jumlah);
         }
-        //redirect('pelanggan/menu');
+        //die(print_r($hasil));
+        $this->model_pelanggan->pesanan_detail($hasil);
         $this->session->set_userdata(array('pesanan'=>'oke'));
     }
     
     function cek(){
         echo $this->session->userdata('pesanan');
         //die(print_r($this->session->userdata('pesanan')));
+    }
+
+    function like(){
+        $this->session->sess_destroy();
+        redirect('pelanggan');
+    }
+
+    function unlike(){
+        $id = $this->session->userdata('id_pelanggan');
+        $this->model_pelanggan->unlike($id);
+        //$this->session->sess_destroy();
+        redirect('pelanggan');
+    }
+    
+    function tampil_makanan(){
+        $record = $this->model_pelanggan->tampil_data();
+        foreach ($record->result() as $r){
+            echo '<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                <div class="mdl-card__media">
+                  <a class="posisi">
+                    <img class="gambar1"
+                         id="M'.$r->id_menu.'"  
+                         data-id="'.$r->id_menu.'"
+                         data-nama="'.$r->nama.'"
+                         data-foto="'.$r->foto.'" 
+                         src="'.base_url().'/assets/gambar/makanan/'.$r->foto.'">
+                    <div class="centered">'.$r->nama.'</div>
+                  </a>
+                </div>
+                <p><center><h7><b>Rp.'.$r->harga.'</b></h7></center></p>
+              </div>';
+        }
+    }
+    
+    function tampil_minuman(){
+        $record = $this->model_pelanggan->tampil_data2();
+        foreach ($record->result() as $r){
+            echo '<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                <div class="mdl-card__media">
+                  <a class="posisi">
+                    <img class="gambar1"
+                         id="M'.$r->id_menu.'"  
+                         data-id="'.$r->id_menu.'"
+                         data-nama="'.$r->nama.'"
+                         data-foto="'.$r->foto.'" 
+                         src="'.base_url().'/assets/gambar/makanan/'.$r->foto.'">
+                    <div class="centered">'.$r->nama.'</div>
+                  </a>
+                </div>
+                <p><center><h7><b>Rp.'.$r->harga.'</b></h7></center></p>
+              </div>';
+        }
     }
 }

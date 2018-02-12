@@ -1,294 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <title>Pantry</title>
-  
-  
-  <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap-admin.min.css" rel="stylesheet">
-  <link href="<?php echo base_url();?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link href="<?php echo base_url();?>vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <link href="<?php echo base_url();?>assets/css/admin.css" rel="stylesheet">
-  <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-  <script src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/jquery.easing.min.js"></script>
-  <script src="<?php echo base_url();?>assets/js/sb-admin.min.js"></script>
+    <meta charset="utf-8">
+    <title>Pantry</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    
+    
+    
+    <!--JQuery DataTable Css--> 
+    <link href="<?php echo base_url();?>assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    
+    
+    <!--Bootstrap Core Css-->
+    <link href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+     <!--Waves Effect Css -->
+    <link href="<?php echo base_url();?>assets/plugins/node-waves/waves.css" rel="stylesheet" />
+
+     <!--Animation Css--> 
+    <link href="<?php echo base_url();?>assets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+     <!--Morris Chart Css-->
+    <link href="<?php echo base_url();?>assets/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!--Sweetalert Css -->
+    <link href="<?php echo base_url();?>assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    
+     <!--Custom Css -->
+    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
+
+     <!--AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="<?php echo base_url();?>assets/css/themes/all-themes.css" rel="stylesheet" />
+    
+
 </head>
+<body class="theme-indigo">
+<!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars" style="inn"></a>
+                <a class="navbar-brand">
+                    <img src="<?php echo base_url();?>assets/gambar/logo.png" width="25" height="25">
+                </a>
+                <a class="navbar-brand">Broto Resto</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <!-- #END# Call Search -->
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count">7</span>
+                        </a>
+                    </li>
+                    <!-- #END# Notifications -->
+                    <!-- Tasks -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="<?php echo base_url();?>assets/images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('nama_pengguna');?></div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="active">
+                        <a href="<?php echo base_url().'pantry/tampil_pantry';?>">
+                            <i class="material-icons">view_list</i>
+                            <span>Daftar Stock</span>
+                        </a>
+                    </li>
+                    <li class="header">LABELS</li>
+                    <li>
+                        <a href="<?php echo base_url().'pantry/logout';?>">
+                            <i class="material-icons col-red">donut_large</i>
+                            <span>Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+    </section>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
-  <!-- Navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html" style="color: yellow;">Broto Resto</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Stock Barang">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-edit"></i>
-            <span class="nav-link-text">Stock Barang</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tambah Stock">
-            <a class="nav-link" href="<?php echo base_url().'pantry/tambah_stock'?>">
-            <i class="fa fa-fw fa-pencil-square-o"></i>
-            <span class="nav-link-text">Tambah Stock</span>
-          </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Hapus Stock">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-pencil-square-o"></i>
-            <span class="nav-link-text">Hapus Stock</span>
-          </a>
-        </li>
-      </ul>
-        
-      <ul class="navbar-nav sidenav-toggler">
-        <li class="nav-item">
-          <a class="nav-link text-center" id="sidenavToggler">
-            <i class="fa fa-fw fa-angle-left"></i>
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        
-        <li>
-            <div class="nama" style="padding-top: 10px; color: white;"><h6><b>Selamat Datang, <?php echo $this->session->userdata('nama_pengguna');?></b> </h6></div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!--content-->
-  <div class="content-wrapper">
-    <div class="container-fluid">
-        <div class="card mb-3">
-        <div class="card-header">
-          <i class="fa fa-table"></i> Stock Barang</div>
-        <div class="card-body">
-         <button class="btn btn-primary" data-toggle="modal" data-target="#tambah">Tambah</button>
-         <div  style="padding-top : 2px;"></div>
-         </br>
-          <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>ID Bahan</th>
-                  <th>Nama Bahan</th>
-                  <th>Jumlah</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="tampil_data">
-                
-              </tbody>
-            </table>
-          </div>
-        </div>
-            <div class="card-footer small text-muted"><p id="update"></p></div>
-      </div>
-    </div>
-    </div>
-      
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-      <div class="container">
-        <div class="text-center">
-          <small>Copyright © 2017</small>
-        </div>
-      </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="<?php echo base_url().'login/logout'?>">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Modal -->
-<div class="modal fade" id="tambah" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>  
-        <div class="modal-body">
-            <div class="form-group">
-                <label class="control-label" for="text-input">Nama Bahan</label>
-                <input class="form-control" type="text" name="nama_bahan" id="nama_bahan">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="text-input">Jumlah</label>
-                <input class="form-control" type="text" name="jumlah" id="jumlah">
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <input type="submit" name="submit_data" id="submit_data" class="btn btn-primary" value="Simpan">
-        </div>
-    </div>
-  </div>
-</div>
-    
-<div class="modal fade" id="hapus_dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hapus Bahan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>  
-        <div class="modal-body">
-            <div class="form-group">
-                <label class="control-label" for="text-input">ID Bahan</label>
-                <p class="form-control id" style="border: none;" id="hapus_id"></p>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="text-input">Nama Bahan</label>
-                <p class="form-control nama" style="border: none;" id="hapus_bahan"></p>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="text-input">Jumlah</label>
-                <p class="form-control jumlah" style="border: none;" id="hapus_jumlah"></p>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button class="batal btn btn-secondary" data-dismiss="modal">Batal</button>
-          <button type="submit" name="submit" id="hapus_simpan" class="btn btn-primary">Hapus</button>
-        </div>
-    </div>
-  </div>
-</div>
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Exportable Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Daftar Stok Bahan
+                            </h2>
+                            <div style="padding-top: 20px;">
+                                <button data-toggle="modal" data-target="#tambah" type="button" class="btn btn-primary waves-effect">TAMBAH</button>
+                            </div>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" id="mydata">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Bahan</th>
+                                            <th>Jumlah</th>
+                                            <th>Ubah</th>
+                                            <th>Hapus</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="show_data">
 
-<div class="modal fade" id="edit_dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Bahan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>  
-        <div class="modal-body">
-            <div class="form-group">
-                <label class="control-label" for="text-input">ID Bahan</label>
-                <p class="form-control id" style="border: none;" id="edit_id"></p>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="control-label" for="text-input">Nama Bahan</label>
-                <input type="text" class="form-control" id="edit_bahan">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="text-input">Jumlah</label>
-                <input type="text" class="form-control" id="edit_jumlah">
-                
-            </div>
+            <!-- #END# Exportable Table -->
         </div>
-        <div class="modal-footer">
-          <button class="batal1 btn btn-secondary" data-dismiss="modal">Batal</button>
-          <button type="submit" name="submit" id="simpan_edit" class="hapus2 btn btn-primary">Simpan</button>
-        </div>
-    </div>
-  </div>
-</div>
-       
-  
-<script type="text/javascript">
-    $(document).ready(function(){     
-        $('#submit_data').on('click',function(){
-           var nama_bahan = $('#nama_bahan').val();
-           var jumlah     = $('#jumlah').val();
-           $.ajax({
-               url : "<?php echo base_url();?>pantry/post",
-               method : "POST",
-               data : {nama_bahan: nama_bahan, jumlah: jumlah},
-               success :function(data){
-                   $('#tampil_data').html(data);
-                   $('#update').html("Updated <?php echo date('Y-m-d H:m:s')?>");
-               }
-           });
-        });
+    </section>
+ 
+        <!-- Default Size -->
+            <div class="modal fade" id="defaultModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        
+                        <div class="modal-body">
+                            <h1 class="modal-title">Apakah Anda Yakin Akan Menghapus Bahan Ini ?</h1>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="hapus" class="btn btn-danger waves-effect">HAPUS</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="modal fade" id="edit">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Edit Bahan</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form_validation" method="POST">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <small>Nama Bahan</small>
+                                        <input id="edit_bahan" type="text" class="form-control validate"  placeholder="" name="nama_brg" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <small>Jumlah</small>
+                                        <input id="edit_jumlah" type="text" class="form-control validate" name="jml_brg" required="">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="simpan_edit" class="btn btn-primary waves-effect">SIMPAN</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="modal fade" id="tambah">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4>Tambah Bahan</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form_validation" method="POST">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input id="nama_bahan" type="text" class="form-control form-float validate" name="nama_brg" required>
+                                        <label class="form-label">Nama Bahan</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input id="jumlah" type="text" class="form-control validate" name="jml_brg" required>
+                                        <label class="form-label">Jumlah Bahan</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="simpan_data" class="btn btn-primary waves-effect">SIMPAN</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">BATAL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 
+    <!--Jquery Core Js -->
+    <script src="<?php echo base_url();?>assets/plugins/jquery/jquery.min.js"></script>
+
+     <!--Bootstrap Core Js-->
+    <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.js"></script>
+
+     <!--Select Plugin Js--> 
+    <script src="<?php echo base_url();?>assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+     <!--Slimscroll Plugin Js-->
+    <script src="<?php echo base_url();?>assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+     <!--Waves Effect Plugin Js-->
+    <script src="<?php echo base_url();?>assets/plugins/node-waves/waves.js"></script>
+    
+    <!--Jquery DataTable Plugin Js--> 
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    
+    <!--Custom Js -->
+    <script src="<?php echo base_url();?>assets/js/admin.js"></script>
+    <script src="<?php echo base_url();?>assets/js/pages/tables/jquery-datatable.js"></script>
+
+     <!--SweetAlert Plugin Js--> 
+    <script src="<?php echo base_url();?>assets/plugins/sweetalert/sweetalert.min.js"></script>
+
+     <!--Custom Js -->
+    <script src="<?php echo base_url();?>assets/js/pages/ui/dialogs.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="<?php echo base_url();?>assets/js/pages/forms/form-validation.js"></script>
+     <!--Demo Js -->
+    <script src="<?php echo base_url();?>assets/js/demo.js"></script>
+    <script type="text/javascript">
+    var save_method; //for save method string
+    var table;
+    
         
-        $('#tampil_data').load("<?php echo base_url();?>pantry/tampil");
+    $(document).ready(function(){
         
+        setInterval(function(){
+            reload_table();
+        },5000);
         
+        table = $('#mydata').DataTable({ 
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+            "url": "<?php echo site_url('pantry/tampil')?>",
+            "type": "POST"
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [
+        { 
+            "targets": [ -1 ], //last column
+            "orderable": false, //set not orderable
+        },
+        ],
+
+    });
+//        tampil_data_barang();   //pemanggilan fungsi tampil barang.
+//        $('#mydata').dataTable();
+//        //fungsi tampil barang
+//        function tampil_data_barang(){
+//            $.ajax({
+//                type  : 'ajax',
+//                url   : "<?php echo base_url()?>pantry/tampil",
+//                async : false,
+//                dataType : 'json',
+//                success : function(data){
+//                    //alert(id);
+//                    //alert(data);
+//                    var html = '';
+//                    var i;
+//                    for(i=0;i<data.length;i++){
+//                        html += '<tr id="baris_"'+i+'>'+
+//                                '<td>'+(i+1)+'</td>'+
+//                                '<td>'+data[i].nama_bahan+'</td>'+
+//                                '<td>'+data[i].jumlah+'</td>'+
+//                                '<td><button class="modal_data btn btn-block btn-sm bg-indigo waves-effect" data-toggle="modal" data-target="#edit" data-id='+data[i].id_bahan+' data-nama_bahan='+data[i].nama_bahan+' data-jumlah='+data[i].jumlah+'><i class="material-icons col-red">create</i></button></td>'+
+//                                '<td></td>'+
+//                                '</tr>';
+//                    }
+//                    $('#show_data').html(html);
+//                }
+//            });
+//        }
+//      
+        //data bahan
         $(document).on('click','.modal_data',function(){
             var id     = $(this).data("id");
             var nama   = $(this).data("nama_bahan");
             var jumlah = $(this).data("jumlah");
-            $('#hapus_id').html('<b>'+id+'</b>');
-            $('#hapus_bahan').html('<b>'+nama+'</b>');
-            $('#hapus_jumlah').html('<b>'+jumlah+'</b>');
+            $('#hapus').attr("data-id",id);
+//            $('#hapus_id').html('<b>'+id+'</b>');
+//            $('#hapus_bahan').html('<b>'+nama+'</b>');
+//            $('#hapus_jumlah').html('<b>'+jumlah+'</b>');
             $('#edit_id').html('<b>'+id+'</b>');
             $('#edit_bahan').val(nama);
             $('#edit_jumlah').val(jumlah);
             $('#simpan_edit').attr("data-id",id);
-            $('#hapus_simpan').attr("data-id",id);
-            
+//            $('#hapus_simpan').attr("data-id",id); 
         });
         
-        $('#hapus_simpan').on('click',function(){
+        //hapus
+        $('#hapus').click(function(){
             var id = $(this).attr('data-id');
+            //alert(id);
             $.ajax({
+               type : "POST",
                url : "<?php echo base_url();?>pantry/hapus",
-               method : "POST",
                data : {id_bahan: id},
+               dataType : "JSON",
                success :function(data){
-                   $("#baris_"+id).fadeOut();
+                    $('#defaultModal').modal("hide");
+                    reload_table();
                }
            });
-           $('.batal').trigger('click');
         });
         
+        
+        //simpan
+        $('#simpan_data').click(function(){
+           var nama_bahan = $('#nama_bahan').val();
+           var jumlah     = $('#jumlah').val();
+           $.ajax({
+               type : "POST",
+               url : "<?php echo base_url();?>pantry/post",
+               dataType : "JSON",
+               data : {nama_bahan: nama_bahan, jumlah: jumlah},
+               success :function(data){
+                   //$('#tampil_data').append(data);
+                   //$('#tampil_data').html(data);
+                   $('#tambah').modal("hide");
+                   reload_table();
+               }
+           });
+        });
+        
+        
+        //ubah
         $('#simpan_edit').on('click',function(){
             var id = $(this).attr('data-id');
             var nama_bahan = $('#edit_bahan').val();
             var jumlah     = $('#edit_jumlah').val();
             $.ajax({
                url : "<?php echo base_url();?>pantry/edit",
-               method : "POST",
+               dataType : "JSON",
+               type : "POST",
                data : {id_bahan   : id,
                        nama_bahan : nama_bahan,
                        jumlah     : jumlah},
                success :function(data){
-                   $('#tampil_data').html(data);
-                   $('#tampil_data').load("<?php echo base_url();?>pantry/tampil");
+                   //$('#tampil_data').html(data);
+                   $('#edit').modal("hide");
+                   //tampil_data_barang();
+                   reload_table();
                }
            });
-           $('.batal1').trigger('click');
         });
     });
+    
+    function reload_table()
+    {
+        table.ajax.reload(null,false); //reload datatable ajax 
+    }
+    
+ 
 </script>
 
 </body>
-
 </html>

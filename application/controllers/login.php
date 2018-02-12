@@ -17,6 +17,7 @@ class Login extends CI_Controller {
         $username = $this->input->post('username');
         $password = $this->input->post('password'); 
         $hasil = $this->model_login->login($username,$password);
+        $level = $this->session->userdata('level');
         if($hasil->num_rows()>0){
             foreach ($hasil->result() as $h){
                 $id = $h->id_pegawai;
@@ -26,7 +27,6 @@ class Login extends CI_Controller {
                 'id_pengguna'=> $id
                 //'status_login' => 'oke'
                     ));
-            $level = $this->session->userdata('level');
             if($level == 'Manager'){
                 redirect('manager/cek_manager');
             }
@@ -43,8 +43,23 @@ class Login extends CI_Controller {
                 redirect('pantry/cek_pantry');
             }
         }else{
-            $this->session->set_flashdata('info','ID ATAU KATA SANDI ANDA SALAH !');
-            redirect('login');
+            $this->session->set_flashdata('info1','Nama Pengguna atau Kata Sandi Salah');
+            if($level == 'Manager'){
+                redirect('manager');
+            }
+            else if($level == 'Pelayan'){
+                redirect('pelayan');
+            }
+            else if($level == 'Koki'){
+                redirect('koki');
+            }
+            else if($level == 'Kasir'){
+                redirect('kasir');
+            }
+            else if($level == 'Pantry'){
+                redirect('pantry');
+            }
+            //redirect('login');
         }
     }
     

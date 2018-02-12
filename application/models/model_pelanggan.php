@@ -10,7 +10,6 @@ class Model_pelanggan extends CI_Model {
             'tanggal' => date('Y-m-d')
         );
         $this->db->insert('pelanggan',$isi);
-        
     }
     
     function data_user($nama){
@@ -34,7 +33,17 @@ class Model_pelanggan extends CI_Model {
                   FROM menu
                   WHERE id_menu <> ALL (SELECT DISTINCT (resep.id_menu)
                                         FROM resep JOIN bahan USING (id_bahan)
-                                        WHERE resep.jumlah > bahan.jumlah)";
+                                        WHERE resep.jumlah > bahan.jumlah) AND id_kategori = '1'";
+        return $this->db->query($query);
+        
+    }
+
+    function tampil_data2(){
+        $query = "SELECT *
+                  FROM menu
+                  WHERE id_menu <> ALL (SELECT DISTINCT (resep.id_menu)
+                                        FROM resep JOIN bahan USING (id_bahan)
+                                        WHERE resep.jumlah > bahan.jumlah) AND id_kategori = '0'";
         return $this->db->query($query);
         
     }
@@ -62,5 +71,11 @@ class Model_pelanggan extends CI_Model {
                       WHERE id_bahan = '$r->id_bahan'";
             $this->db->query($query);
         }
+    }
+
+    function unlike($id){
+        $this->db->where('id_pelanggan',$id);
+        $this->db->update('pelanggan',array('feedback'=>'0'));
+        //return $this->db->get_where('pesanan',array('id_pelanggan'=>$id))->row_array();
     }
 }

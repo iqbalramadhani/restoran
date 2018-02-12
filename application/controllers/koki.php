@@ -15,18 +15,18 @@ class Koki extends CI_Controller {
     }
     
     public function tampil_koki(){
-        $data['record'] = $this->model_koki->tampil_pesanan();
+        cek_koki();
+        //$data['record'] = $this->model_koki->tampil_pesanan();
         //die(print_r($data));
         $this->load->view('header_koki');
-        $this->load->view('koki',$data);
-        $this->load->view('footer');
+        $this->load->view('koki');
     }
     
     public function cek_koki(){
         $id = $this->session->userdata('id_pengguna');
         $data = $this->model_login->get_one($id)->row_array();
         if($data['jabatan'] == 'Koki'){
-            $this->session->set_userdata(array('nama_pengguna'=>$data['nama_lengkap']));
+            $this->session->set_userdata(array('status_koki'=>'oke','nama_pengguna'=>$data['nama_lengkap']));
             redirect('koki/tampil_koki');
         }else{
             $this->session->set_flashdata('info','ANDA BUKAN KOKI !');
@@ -35,54 +35,73 @@ class Koki extends CI_Controller {
     }
     
     public function pesanan_selesai(){
+        cek_koki();
         $id = $this->input->post("id");
         $this->model_koki->pesanan_selesai($id);
     }
     
-    public function pesanan_next()
-    {
-        foreach ($this->model_koki->tampil_pesanan() as $r):
-        echo   '<div id="data_'.$r->id_pesanan.'" class="col-md-12 thumbnail" style="padding-left : 10px;">
-                <p>No Pesanan : '.$r->id_pesanan.'</p>
-                <p>Nama : '.$r->nama.'</p>
-                <div class="row">
-                  <div class="col-lg-10 col-md-9 col-sm-9">
-                    <table class="table table-bordered">
-                     <thead>
-                        <tr style="background-color: skyblue; color: white;">
-                            <th>Banyak</th>
-                            <th>Nama Makanan/Minuman</th>
-                        </tr>
-                     </thead>
-                     <tbody>';
-                        $pecah  = explode(",",$r->jumlah);
-                        $pecah1 = explode(",",$r->nama_pesanan);
-                        for ($i=0;$i<count($pecah);$i++){
-                           echo '<tr>
-                                    <td>'.$pecah[$i].'</td>
-                                   <td>'.$pecah1[$i].'</td>    
-                                  </tr>';
-                        }
-               echo  '</tbody>
-                    </table>
-                  </div>
-                  <div class="col-md-2 col-sm-2">
-                      <button type="button" data-id="'.$r->id_pesanan.'" class="selesai btn btn-success"><img src="'.base_url().'/assets/gambar/Y.png" width="130px" height="130px" alt="Selesai"></button>
-                  </div>
-                </div>          
-            </div>';
-          endforeach;
+    public function pesanan_next(){
+        cek_koki();
+        $hasil = $this->model_koki->tampil_pesanan();
+        if($hasil->num_rows()>0){
+            foreach ($hasil->result() as $r){
+                echo   '<div id="data_'.$r->id_pesanan.'" class="header">
+                            <h2>
+                                No Pesanan : '.$r->id_pesanan.'
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-xs-8 col-md-8">
+                                  <!-- Bordered Table -->
+                                  <div class="body table-responsive">
+                                                  <table class="table table-bordered">
+                                                      <thead style="background-color: #434e60; color: white;">
+                                                          <tr>
+                                                              <th>Nama Pesanan</th>
+                                                              <th>Jumlah Pesanan</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tbody>';
+                                                            $pecah  = explode(",",$r->nama_pesanan);
+                                                            $pecah1 = explode(",",$r->jumlah);
+                                                            for ($i=0;$i<count($pecah);$i++){
+                                                               echo '<tr>
+                                                                        <td>'.$pecah[$i].'</td>
+                                                                       <td>'.$pecah1[$i].'</td>    
+                                                                      </tr>';
+                                                            }
+                echo  '</tbody>
+                                                  </table>
+                                              </div>
+                                  <!-- #END# Bordered Table -->                                    
+                                </div>
+                                <div class="col-xs-4 col-md-3">
+                                    <a href="javascript:void(0);" class="thumbnail">
+                                        <img class="selesai" src="'.base_url().'assets/mdl/images/checklist.png" data-id="'.$r->id_pesanan.'" class="img-responsive">
+                                    </a>
+                                </div>';
+            }
+        }else{
+            echo '<div style="padding: 20px 0 20px 0;">
+                    <center><h1>Tidak Ada Pesanan !</h1></center>
+                  </div>';
+        }
     }
     
     public function menu(){
+        cek_koki();
         $data['bahan'] = $this->model_koki->tampil_bahan()->result();
         $data['menu'] = $this->model_koki->menu()->result(); 
-        $this->load->view('header_koki');
+        //$this->load->view('header_koki');
         $this->load->view('koki_menu',$data);
-        $this->load->view('footer');
+        //$this->load->view('footer');
     }
     
     public function simpan_menu(){
+        cek_koki();
+        
         $upload = $this->upload();
         if($upload['result'] == "success"){ // Jika proses upload sukses
             // Panggil function untuk menyimpan data ke database
@@ -114,7 +133,8 @@ class Koki extends CI_Controller {
     }
     
     public function hapus_menu(){
-        $id = $this->uri->segment(3);
+        //cek_koki();
+        $id = $this->input->post('id_hapus',true);
         $this->model_koki->hapus_menu($id);
         redirect('koki/menu');
     }
@@ -134,5 +154,51 @@ class Koki extends CI_Controller {
             $return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
             return $return;
           }
-        }
+    }
+    
+    public function tampil_menu(){
+        cek_koki();
+            //$data['bahan'] = $this->model_koki->tampil_bahan()->result();
+            $menu = $this->model_koki->menu()->result();
+            $no = 1;
+            foreach ($menu as $m):
+            echo '<tr>
+                <td>'.$no.'</td>
+                <td>'.$m->nama.'</td>
+                <td>'.$m->harga.'</td>
+                <td>
+                    <ul>';
+                        $pecah  = explode(",",$m->jumlah);
+                        $pecah1 = explode(",",$m->bahan);
+                        for($i=0;$i<count($pecah);$i++){
+                   echo '<li>'.$pecah[$i].' '.$pecah1[$i].'</li>';   
+                        }
+                  echo '</ul>
+                </td>
+                <td>
+                    <ul>'; 
+                        $pecah2 = explode(",",$m->jumlah_bahan);
+                        for($i=0;$i<count($pecah2);$i++){
+                            if($pecah2[$i]>=$pecah[$i]){
+                                echo '<li><font color="green" style="bold">'.$pecah2[$i].' '.$pecah1[$i].'</font></li>';
+                            }else{
+                                echo '<li><font color="red" style="bold">'.$pecah2[$i].' '.$pecah1[$i].'</font></li>';
+                            } 
+                        }
+                  echo '</ul>
+                </td>
+                <td><img src="'.base_url().'assets/gambar/makanan/'.$m->foto.'" width="180" height="120" alt="Lotek"></td>
+                <td>
+                    <button class="btn btn-block bg-indigo waves-effect" data-toggle="modal" data-target="#ubah">Ubah</button>
+                    <button class="hapus btn btn-block bg-red waves-effect" data-id="'.$m->id_menu.'" data-toggle="modal" data-target="#hapus">Hapus</button>
+                </td>
+            </tr>';
+            $no++;
+            endforeach; 
+    }
+    
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect('koki');
+    }
 }
